@@ -1,10 +1,10 @@
-const express = require('express')
 
-const data = {
-    persoon : 'Anna',
-    leeftijd : 20,
-    thuis : 'Amsterdam',
-}
+
+// const data = {
+//     persoon : 'Anna',
+//     leeftijd : 20,
+//     thuis : 'Amsterdam',
+// }
 
 const movies = [ {
     id : 'catch-me-if-you-can',
