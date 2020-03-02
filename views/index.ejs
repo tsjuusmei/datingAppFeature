@@ -1,9 +1,13 @@
 <!doctype html>
 
+
+<body>
+
 <h1> Movies </h1>
-<% for (var index = 0; index < movies.length; index++) {%>
+<% for (var index = 0; index < movies.length; index++) { %>
   <h2>
-    <a href=""> <%= movies[index].title %> </a>
+    <a href=""> <%= movies.title %> </a>
   </h2>
-  <p> <%= movies[index].plot %> </p>
+  <p> <%= movies.plot %> </p>
 <% } %>
+</body>

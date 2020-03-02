@@ -1,3 +1,4 @@
+const express = require('express')
 
 const data = {
     persoon : 'Anna',
@@ -16,7 +17,7 @@ const movies = [ {
     title : 'Knives out',
     plot : 'A detective investigates the death of a patriarch of an eccentric, combative family.',
     description : 'Writer Harlan Thrombey is found dead in his house, just after his 85th birthday. Detective Benoit Blanc is called in to solve the mystery, which is quite a challenge. Harlan has rather strange and suspicious family members and also a number of staff members who served him when he was alive.',
-}
+},
 {
     id : 'titanic',
     title : 'Knives out',
@@ -24,8 +25,6 @@ const movies = [ {
     description : 'Writer Harlan Thrombey is found dead in his house, just after his 85th birthday. Detective Benoit Blanc is called in to solve the mystery, which is quite a challenge. Harlan has rather strange and suspicious family members and also a number of staff members who served him when he was alive.',
 }
 ]
-
-
 
 
 const express = require('express')
