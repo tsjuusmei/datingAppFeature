@@ -1,3 +1,9 @@
+<!doctype html>
 
-<h1> Hoi <%= data.persoon %> </h1>
-<p> Je leeftijd is <%= data.leeftijd %> </p>
+<h1> Movies </h1>
+<% for (var index = 0; index < movies.length; index++) {%>
+  <h2>
+    <a href=""> <%= movies[index].title %> </a>
+  </h2>
+  <p> <%= movies[index].plot %> </p>
+<% } %>
