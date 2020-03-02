@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Start pagina</title>
+</head>
+<body>
+<header>
+    <button id="backbutton"></button>
+    <img id="logo" src="../static/images/logo.png" alt="logo luvely">
+
+</header>
+<main class="normalmain">
+    <form action="">
+        <h1> What are you looking for?</h1>
+        <fieldset>
+            <legend>Gender:</legend>
+            <input type="radio" class="radio" id="men" name="gender" value="men">
+            <label for="men">Men</label>
+            <input type="radio" class="radio" id="women" name="gender" value="women">
+            <label for="women">Women</label>
+            <input type="radio" class="radio" id="everyone" name="gender" value="everyone">
+            <label for="everyone">Everyone</label>
+        </fieldset>
+        <fieldset>
+            <legend>Sexuality:</legend>
+            <input type="radio" class="radio" id="straight" name="sexuality" value="straight">
+            <label for="straight">Straight</label>
+            <input type="radio" class="radio" id="gay" name="sexuality" value="gay">
+            <label for="gay">Gay</label>
+            <input type="radio" class="radio" id="bi" name="sexuality" value="bi-sexual">
+            <label for="bi">Bi-sexual</label>
+            <input type="radio" class="radio" id="does" name="sexuality" value="doesntmatter">
+            <label for="does">Doesn't matter</label>
+        </fieldset>
+        <fieldset>
+            <legend>Age:</legend>
+            <input type="number">
+            <input type="number">
+        </fieldset>
+        <fieldset>
+            <legend>Distance:</legend>
+            <input type="range" name="distance" value="">
+        </fieldset>
+        <fieldset >
+            <legend>Movie genres:</legend>
+            <div id="movies">
+                <input type="checkbox" class="radio" id="horror">
+                <label for="horror">Horror</label>
+
+                <input type="checkbox" class="radio" id="fantasy">
+                <label for="fantasy">Fantasy</label>
+
+                <input type="checkbox" class="radio" id="thriller">
+                <label for="thriller">Thriller</label>
+
+                <input type="checkbox" class="radio" id="comedy">
+                <label for="comedy">Comedy</label>
+
+                <input type="checkbox" class="radio" id="action">
+                <label for="action">Action</label>
+
+                <input type="checkbox" class="radio" id="romantic">
+                <label for="romantic">Romantic</label>
+
+                <input type="checkbox" class="radio" id="drama">
+                <label for="drama">Drama</label>
+
+                <input type="checkbox" class="radio" id="docu">
+                <label for="docu">Docu</label>
+            </div>
+        </fieldset>
+
+    </form>
+    
+</main>
+
+<footer>
+    <button id="next" >Next <img src="../static/images/pijltjerechts.png" alt="pijltje naar rechts"></button>
+</footer>
+
+</body>
+</html>
