@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <!-- <link rel="stylesheet" href="style.css"> -->
     <title>Start pagina</title>
 </head>
 <body>
@@ -39,12 +39,17 @@
         </fieldset>
         <fieldset>
             <legend>Age:</legend>
-            <input type="number">
-            <input type="number">
+            <label for="min">Minimum leeftijd</label>
+            <input type="number" id="min" min="18" max="100" name="minimum leeftijd">
+            <label for="max">Maximum leeftijd</label>
+            <input type="number" id="max" min="18" max="100" name="maximum leeftijd">
         </fieldset>
         <fieldset>
             <legend>Distance:</legend>
-            <input type="range" name="distance" value="">
+            <input type="number" >
+            <input type="range">
+                
+
         </fieldset>
         <fieldset >
             <legend>Movie genres:</legend>

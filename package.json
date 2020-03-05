@@ -4,7 +4,9 @@
   "description": "dit is mijn dating app feature",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "nodemon": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -15,14 +17,20 @@
     "feature"
   ],
   "author": "annaboomsma",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/annaboomsma/datingAppFeature/issues"
   },
   "homepage": "https://github.com/annaboomsma/datingAppFeature#readme",
   "dependencies": {
+    "array-find": "^1.0.0",
+    "body-parser": "^1.19.0",
     "camelcase": "^5.3.1",
     "ejs": "^3.0.1",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "slug": "^2.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
   }
 }

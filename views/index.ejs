@@ -3,11 +3,13 @@
 
 <body>
 
-<h1> Movies </h1>
+<h1> My movie list: </h1>
 <% for (var index = 0; index < data.length; index++) { %>
   <h2>
-    <a href=""> <%= data[index].title %> </a>
+    <a href="/<%= data[index].id %>"> <%= data[index].title %> </a>
   </h2>
   <p> <%= data[index].plot %> </p>
 <% } %>
+
+<a href="/add">Add a movie</a>
 </body>
