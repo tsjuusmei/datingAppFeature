@@ -74,7 +74,7 @@ legend{
     margin-bottom: 2rem;
 }
 
-label{
+.label{
     font-family: 'Montserrat';
     font-size: 1.2rem;
     color: #FFFFFD ;
@@ -86,6 +86,13 @@ label{
     text-align: center;
     margin-top: 1rem;
     box-shadow: 3px 3px 6px lightgray;
+}
+
+.agelabel{
+    font-size: 1rem;
+    font-family: 'Montserrat';
+    color:  #11A3CB;
+    margin-bottom: 2rem;
 }
 
  .radio{
