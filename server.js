@@ -35,7 +35,7 @@ app.use(bodyParser.urlencoded({extended: true}))
 
 app.set('view engine' , 'ejs')
 
-app.get('/',(req,res) => res.render('index.ejs',{data: movies}))
+// app.get('/',(req,res) => res.render('index.ejs',{data: movies}))
 app.get('/:id', movie)
 app.get('/add', form)
 
@@ -62,7 +62,7 @@ function form(req,res){
 // }
 
 
-// app.get('/', (req, res) => res.sendfile(path.join(__dirname + '/static/index.html')))
+app.get('/', (req, res) => res.sendfile(path.join(__dirname + '/static/index.html')))
 app.get('/about',(req, res) => res.send('De about pagina bitches'))
 app.get('/contact',(req, res) => res.send('De contact pagina'))
 
