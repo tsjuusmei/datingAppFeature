@@ -35,12 +35,16 @@ app.use(bodyParser.urlencoded({extended: true}))
 
 app.set('view engine' , 'ejs')
 
-// app.get('/',(req,res) => res.render('index.ejs',{data: movies}))
+app.get('/',(req,res) => res.render('index.ejs',{data: movies}))
 app.get('/:id', movie)
 app.get('/add', form)
+app.get('/static', (req, res) => res.sendfile(path.join(__dirname + '/static/index.html')))
+app.get('/about',(req, res) => res.send('De about pagina bitches'))
+app.get('/contact',(req, res) => res.send('De contact pagina'))
 
-// app.post('/', add)
+app.post('/', add)
 
+// app.delete('/:id', remove)
 
 function movie(req,res,next){
     const id = req.params.id
@@ -55,15 +59,24 @@ function movie(req,res,next){
 }
 
 function form(req,res){
-    res.render('detail.ejs', {data: movie})
+    res.render('add.ejs', {data: movie})
 }
 
-// function add(req,res){
-// }
+function add(req,res){
+    const id = slug(req.body.title).toLowerCase()
+
+    movies.push({
+        id: id,
+        title : req.body.title,
+        plot : req.body.plot,
+        description : req.body.description 
+    })
+    res.redirect('/' + id)
+}
+
+// function remove
 
 
-app.get('/', (req, res) => res.sendfile(path.join(__dirname + '/static/index.html')))
-app.get('/about',(req, res) => res.send('De about pagina bitches'))
-app.get('/contact',(req, res) => res.send('De contact pagina'))
+
 
 app.listen(port,() => console.log('Example app listening on port' + port))
