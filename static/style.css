@@ -169,28 +169,31 @@ footer{
 /* Dit is voor resultaten scherm */
 
 #mainresults{
-    height: 50rem;
+    /* height: 50rem; */
     padding: 1.5rem;
 }
 
 .person{
     position: relative;
+    width: 100%;
+    height: 30rem;
     color: #FFFFFD;
     font-family: 'Montserrat' ;
+    padding-top: 2rem;
     
   }
 .person img{
-    position: absolute;
     width: 100%;
-    margin: auto;
-    border-radius: 12px;
+    border-radius: 15px;
+    height: 100%;
 }
 
 
 .info{
-    position: absolute;
-    font-size: 0.85rem;
-    padding: 1rem;
+    position: absolute; 
+    top: 25.5rem; 
+    left: 1rem; 
+    width: 100%; 
     
     
 }
