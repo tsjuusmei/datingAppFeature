@@ -2,14 +2,16 @@
 
 
 <body>
-<h1> My movie list: </h1>
+<h1> Results: </h1>
+
+<a href="/filter">Add filters</a>
 
 <% for (var index = 0; index < data.length; index++) { %>
-  <h2>
-    <a href="/<%= data[index].id %>"> <%= data[index].title %> </a>
-  </h2>
-  <p> <%= data[index].plot %> </p>
+
+  <section>
+    <h2> <%= data[index].firstName %> </h2>
+    <p> <%= data[index].sexuality %> </p>
+  </section>
 <% } %>
 
-<a href="/add">Add a movie</a>
 </body>
