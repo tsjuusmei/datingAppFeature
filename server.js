@@ -12,7 +12,7 @@ let db = null
 let url = 'mongodb+srv://asd123:asd123@datingapp-ishqp.mongodb.net/test?retryWrites=true&w=majority'
 
 
-mongo.MongoClient.connect(url, function(err, client){
+mongo.MongoClient.connect(url, { useUnifiedTopology: true }, function(err, client){
     if (err) {
         throw err
     }
@@ -59,26 +59,27 @@ function filters(req,res){
 }
 
 function add(req,res){
-    const id = slug(req.body.title).toLowerCase()
-
-    data.push({
-        id: id,
-        title : req.body.title,
-        plot : req.body.plot,
-        description : req.body.description 
-    })
-    res.redirect('/')
-}
+    let gender = req.body.gender;
+    let sexualityFilter = req.body.sexuality;
+    db.collection('datingapp').find({sexuality: sexualityFilter}).toArray(done)
+        function done(err, data){
+            if (err){
+                next(err)
+            } else {
+                console.log(data);
+                res.render('index.ejs', {data: data})
+            }
+        }
 
 // const genderChecked = document.querySelector('input[name=gender]:checked')
 // const sexualityChecked = document.querySelector('input[name=sexuality]:checked')
 
 
-let sexualityFilter = 'Straight'
+// let sexualityFilter = 'Straight'
 // let genderFilter = "Women"
 
 function people(req, res, next){
-    db.collection('datingapp').find({sexuality: sexualityFilter}).toArray(done)
+    db.collection('datingapp').find({}).toArray(done)
         function done(err, data){
             if (err){
                 next(err)
