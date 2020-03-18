@@ -36,4 +36,7 @@ To test if the application works add this to your terminal:
 
 If the server is running go to [localhost3000](http://localhost:3000/)
 
+## Database 
+This is the structure of the mongodb atlas database:
 
+![Database](https://github.com/annaboomsma/datingAppFeature/blob/master/documentatie/images/Database.png)
