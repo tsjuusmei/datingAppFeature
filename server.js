@@ -8,8 +8,10 @@ const mongo = require('mongodb')
 
 require('dotenv').config()
 
+// THIS IS THE CODE FOR THE CONNECTION WITH THE DATABASE
 let db = null
 let url = 'mongodb+srv://asd123:asd123@datingapp-ishqp.mongodb.net/test?retryWrites=true&w=majority'
+// ik heb mijn url er in gezet want als ik het in mijn .env bestand zet je de database niet kunt gebruiken
 
 
 mongo.MongoClient.connect(url, { useUnifiedTopology: true }, function(err, client){
@@ -19,16 +21,16 @@ mongo.MongoClient.connect(url, { useUnifiedTopology: true }, function(err, clien
     db = client.db(process.env.DB_NAME)
 })
 
+// THIS IS WHERE THE CODE FOR THE DATABASE ENDS
+
 
 app.use('/static',express.static('static'))
 app.use(bodyParser.urlencoded({extended: true}))
 
 app.set('view engine' , 'ejs')
 
-// app.get('/',(req,res) => res.render('index.ejs',{data: movies}))
+
 app.get('/', people)
-// app.get('/:id', movie)
-// app.get('/add', form)
 app.get('/filter', filters)
 app.get('/static', (req, res) => res.sendfile(path.join(__dirname + '/static/index.html')))
 app.get('/about',(req, res) => res.send('De about pagina bitches'))
@@ -36,31 +38,15 @@ app.get('/contact',(req, res) => res.send('De contact pagina'))
 
 app.post('/', add)
 
-// app.delete('/:id', remove)
-
-// function movie(req,res,next){
-//     const id = req.params.id
-//     var movie = find(movies, function (value) {
-//         return value.id === id
-//       })
-//       if (!movie) {
-//         next()
-//         return
-//       }
-//       res.render('detail.ejs', {data: data})
-// }
-
-// function form(req,res){
-//     res.render('add.ejs', {data: data})
-// }
 
 function filters(req,res){
     res.render('filter.ejs')
 }
 
 function add(req,res){
-    let gender = req.body.gender;
-    let sexualityFilter = req.body.sexuality;
+    // let genderFilter = req.body.gender
+    let sexualityFilter = req.body.sexuality
+
     db.collection('datingapp').find({sexuality: sexualityFilter}).toArray(done)
         function done(err, data){
             if (err){
@@ -70,13 +56,13 @@ function add(req,res){
                 res.render('index.ejs', {data: data})
             }
         }
+}
 
 // const genderChecked = document.querySelector('input[name=gender]:checked')
 // const sexualityChecked = document.querySelector('input[name=sexuality]:checked')
 
 
-// let sexualityFilter = 'Straight'
-// let genderFilter = "Women"
+
 
 function people(req, res, next){
     db.collection('datingapp').find({}).toArray(done)
