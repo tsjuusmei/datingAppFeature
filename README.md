@@ -10,3 +10,10 @@ Luvely is a dating app where you can filter the people in our system. You can fi
 ![Luvely](https://github.com/annaboomsma/datingAppFeature/blob/master/documentatie/images/luvely.png)
 
 
+## Getting started
+
+### Clone this folder
+To clone this folder add this in your terminal:
+
+`git clone https://github.com/annaboomsma/datingAppFeature.git`
+
