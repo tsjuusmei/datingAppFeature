@@ -1,22 +1,19 @@
 const express = require('express')
-const slug = require('slug')
 const bodyParser = require('body-parser')
-const app = express()
-const port = 3000
-const path = require('path')
 const mongo = require('mongodb')
+const ObjectID  = mongo.ObjectID;
 const session = require('express-session')
+require('dotenv').config()
+
+const app = express()
+
+const port = 3000
 
 const TWO_HOURS = 1000 * 60 * 60 * 2
 
-require('dotenv').config()
-
-
 // THIS IS THE CODE FOR THE CONNECTION WITH THE DATABASE
 let db = null
-let url = 'mongodb+srv://asd123:asd123@datingapp-ishqp.mongodb.net/test?retryWrites=true&w=majority'
-// ik heb mijn url er in gezet want als ik het in mijn .env bestand zet je de database niet kunt gebruiken
-
+let url = process.env.DB_URL
 
 mongo.MongoClient.connect(url, { useUnifiedTopology: true }, function(err, client){
     if (err) {
@@ -31,15 +28,13 @@ mongo.MongoClient.connect(url, { useUnifiedTopology: true }, function(err, clien
 app.use('/static',express.static('static'))
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(session({
-    name: process.env.SESS_NAME,
+    name: process.env.SESSION_NAME,
     resave: false,
     saveUninitialized: false,
-    secret: process.env.SESS_SECRET,
+    secret: process.env.SESSION_SECRET,
     cookie: {
         maxAge: TWO_HOURS,
         sameSite: true
-
-
     }
 }))
 
