@@ -3,7 +3,6 @@ const slug = require('slug')
 const bodyParser = require('body-parser')
 const app = express()
 const port = 3000
-const path = require('path')
 const mongo = require('mongodb')
 
 require('dotenv').config()
@@ -32,7 +31,6 @@ app.set('view engine' , 'ejs')
 
 app.get('/', people)
 app.get('/filter', filters)
-app.get('/static', (req, res) => res.sendfile(path.join(__dirname + '/static/index.html')))
 app.get('/about',(req, res) => res.send('De about pagina bitches'))
 app.get('/contact',(req, res) => res.send('De contact pagina'))
 
