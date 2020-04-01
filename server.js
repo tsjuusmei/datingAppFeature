@@ -57,7 +57,6 @@ function home(req,res){
     } else{
         res.render('homeSecond.ejs')
     }
-    
 }
 
 function filters(req,res){
@@ -110,12 +109,5 @@ function filter(req,res){
         }
      
 }
-
-
-
-// function remove
-
-
-
 
 app.listen(port,() => console.log('Example app listening on port' + port))
