@@ -45,7 +45,6 @@ app.get('/results', people)
 app.get('/filter', filters)
 app.get('/login', login)
 
-
 app.post('/results', filter)
 app.post('/login', loginpost)
 
