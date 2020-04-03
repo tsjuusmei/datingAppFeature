@@ -45,12 +45,14 @@ app.use(
 app.set("view engine", "ejs");
 
 app.get("/", home);
-app.get("/results", people);
+app.get("/results", results);
+app.get('/register', register)
 app.get("/filter", filters);
 app.get("/login", login);
 
 app.post("/results", filter);
 app.post("/login", loginpost);
+app.post('/register', registerpost)
 
 function home(req, res) {
   let { userId } = req.session;
@@ -59,6 +61,21 @@ function home(req, res) {
   } else {
     res.render("homeSecond.ejs");
   }
+}
+
+function results(req, res, next) {
+  db.collection("datingapp").find({}).toArray(done);
+  function done(err, data) {
+    if (err) {
+      next(err);
+    } else {
+      res.render("index.ejs", { data: data });
+    }
+  }
+}
+
+function register (req, res) {
+  res.render('register.ejs')
 }
 
 function filters(req, res) {
@@ -84,17 +101,6 @@ function loginpost(req, res) {
   res.redirect("/login");
 }
 
-function people(req, res, next) {
-  db.collection("datingapp").find({}).toArray(done);
-  function done(err, data) {
-    if (err) {
-      next(err);
-    } else {
-      res.render("index.ejs", { data: data });
-    }
-  }
-}
-
 function filter(req, res) {
   let sexualityFilter = req.body.sexuality;
   let genderFilter = req.body.gender;
@@ -108,6 +114,28 @@ function filter(req, res) {
     } else {
       res.render("index.ejs", { data: data });
     }
+  }
+}
+
+function registerpost(req, res, next) {
+  db.collection('register').insertOne({
+      username: req.body.username,
+      email: req.body.email,
+      password: req.body.password,
+      locationAcces: req.body.locationAcces,
+      gender: req.body.gender,
+      age: req.body.age,
+      sexuality: req.body.sexuality,
+      movies: req.body.movies,
+      music: req.body.music
+  }, done)
+
+  function done(err, data) {
+      if (err) {
+          next(err)
+      } else {
+          res.redirect('login')
+      }
   }
 }
 
