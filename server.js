@@ -119,15 +119,13 @@ function filter(req, res) {
 
 function registerpost(req, res, next) {
   db.collection('register').insertOne({
-      username: req.body.username,
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
       email: req.body.email,
       password: req.body.password,
-      locationAcces: req.body.locationAcces,
-      gender: req.body.gender,
       age: req.body.age,
-      sexuality: req.body.sexuality,
-      movies: req.body.movies,
-      music: req.body.music
+      gender: req.body.gender,
+      sexuality: req.body.sexuality
   }, done)
 
   function done(err, data) {
