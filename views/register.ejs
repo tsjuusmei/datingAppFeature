@@ -1,14 +1,74 @@
+<!doctype html>
+
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./index.css">
-    <title>Register</title>
+    <%- include('./components/head') %>
+    <title>register</title>
 </head>
 
-<body>
+<body class="register">
+
+    <header>
+
+        <img class="logo" src="../static/images/logo.png" alt="logo luvely">
+    
+    </header>
+
     <main>
+        <div>
+        <h1 class="title">Register</h1>
+        <p class="sidetitle"><a href="/login">Login</a></p> 
+        </div>
+
+        <form method="POST" action="/register">
+
+            <label for="firstname">First name:</label>
+            <input type="text" name="firstname" id="firstname" required>
+
+            <label for="lastname">Last name: </label>
+            <input type="text" name="lastname" id="lastname" required>
+
+            <label for="email">E-mail:</label>
+            <input type="email" name="email" id="email" required>
+
+            <label for="password">Wachtwoord: </label>
+            <input type="password" name="password" id="password" required>
+
+            <p class="labeltitle">Gender:</p>
+
+            <div>
+                <input class='radio' type="radio" id="male" name="gender" value="male">
+                <label for="male" class="label">Male</label>
+
+                <input class='radio' type="radio" id="female" name="gender" value="female">
+                <label for="female" class="label">Female</label>
+
+                <input class='radio' type="radio" id="other" name="gender" value="other">
+                <label for="other" class="label">Other</label>
+            </div>
+
+            <p class="labeltitle">Sexuality:</p>
+
+            <div>
+                <input class='radio' type="radio" id="straight" name="sexuality" value="straight">
+                <label for="straight" class="label">Straight</label>
+
+                <input class='radio' type="radio" id="gay" name="sexuality" value="gay">
+                <label for="gay" class="label">Gay</label>
+
+                <input class='radio' type="radio" id="bi" name="sexuality" value="bi">
+                <label for="bi" class="label">Bisexual</label>
+            </div>
+
+            <img src="../static/images/footer.knop.png" alt="Footer knop">
+            <input class='registerbutton' type="submit" value="register">
+        </form>
+
+        <img class="pijltjerechts" src="../static/images/pijltjerechts.png" alt="">
+    </main>
+
+    <!-- <main>
         <form action="/register" method="POST" class="form-register">
             <fieldset class="register-1">
                 <legend>Welcome!</legend>
@@ -181,7 +241,7 @@
             </fieldset>
         </form>
     </main>
-    <div class="next-btn"></div>
+    <div class="next-btn"></div> -->
 </body>
 
 </html>

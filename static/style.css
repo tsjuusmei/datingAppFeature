@@ -26,6 +26,18 @@ ul {
     margin-top: 10px;
 }
 
+.title {
+    color: #FFFFFD;
+    margin: 70px 0 0 30px;
+    font-size: 38px;
+}
+
+.sidetitle {
+    color: #FFFFFD;
+    margin: 90px 0 0 40px;
+    text-decoration: underline;
+}
+
 /* Begin pagina */
 
 .homeSecond{
@@ -87,17 +99,6 @@ footer a p {
     display: flex;
 }
 
-.login main h1{
-    color: #FFFFFD;
-    margin: 70px 0 0 30px;
-}
-
-.login main p {
-    color: #FFFFFD;
-    margin: 85px 0 0 40px;
-    text-decoration: underline;
-}
-
 .login main form {
     display: flex;
     flex-direction: column;
@@ -149,6 +150,112 @@ footer a p {
     z-index: 1;
     margin: 0 30px 38px 0;
 }
+
+/* Register pagina */
+
+.register {
+    background-color: #2945A0;
+}
+
+.register header {
+    text-align: center;
+}
+
+.register main div {
+    display: flex;
+}
+
+.register main form {
+    display: flex;
+    flex-direction: column;
+    margin: 50px 50px 10px 30px;
+}
+
+.register main form > label {
+    margin: 25px 0 5px;
+    color: #53D0EC;
+    font-weight: bold;
+}
+
+.register main form > input {
+    margin-top: 5px;
+    height: 30px;
+    border: none;
+    border-radius: 8px;
+}
+
+#firstname, #lastname {
+    margin-right: 100px;
+}
+
+.register main > form div {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.labeltitle {
+    margin: 25px 0 5px;
+    color: #53D0EC;
+    font-weight: bold;
+}
+
+.label{
+    font-family: 'Montserrat';
+    font-size: 1.2rem;
+    color: #FFFFFD ;
+    background-color: #53D0EC;
+    padding: 5px;
+    margin: 2px;
+    border-radius: 10px;
+    width: 130px;
+    text-align: center;
+    margin-top: 12px;
+    box-shadow: 3px 3px 6px navy;  
+}
+
+.radio{
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.radio:checked + label{
+    border: 1px solid #2945A0;
+    background-color: #11A3CB;
+}
+
+.register > main form img {
+    position: absolute;
+    bottom: -160px;
+    right: 0;
+    width: 170px;
+}
+
+.registerbutton {
+    position: absolute;
+    width: 175px;
+    bottom: -160px;
+    right: 0;
+    padding: 25px 0 35px;
+    margin-bottom: 35px;
+    background: none;
+    font-family: 'Montserrat';
+    font-size: 28px;
+    letter-spacing: 1px;
+    color: #FFFFFD;
+}
+
+.register main .pijltjerechts {
+    position: absolute;
+    bottom: -160px;
+    right: 0;
+    width: 15px;
+    z-index: 1;
+    margin: 0 15px 38px 0;
+}
+
+
 
 /* .onderknop{
     font-family: 'Montserrat';
@@ -244,8 +351,7 @@ legend{
     width: 11rem;
     text-align: center;
     margin-top: 1rem;
-    box-shadow: 3px 3px 6px lightgray;
-    
+    box-shadow: 3px 3px 6px lightgray;  
 }
 
 .agelabel{
@@ -266,7 +372,6 @@ legend{
     border: 1px solid #2945A0;
     background-color: #11A3CB;
 }
-
 
 #titlefirstpage {
     margin: 28rem 0rem 4.6rem 7rem;
