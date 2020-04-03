@@ -7,19 +7,31 @@
     <title>login</title>
 </head>
 
-<body>
+<body class="login">
+
   <header>
-    <!-- <button id="backbutton" href="" ></button> -->
-    <img id="logo" src="../static/images/logo.png" alt="logo luvely">
+
+    <img class="logo" src="../static/images/logo.png" alt="logo luvely">
 
   </header>
-  <main class="normalmain">
-      <h1>Login</h1>
-      <form method="POST" action="/login">
-        <input type="email" name="email" placeholder="Email" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <input type="submit" value="Login">
+
+  <main>
+
+    <div>
+    <h1>Login</h1>
+    <p><a href="/register">register</a></p> 
+    </div>
+
+    <form method="POST" action="/login">
+      <label for="email">E-mail:</label>
+      <input type="email" name="email" id="email" required>
+      <label for="password">Wachtwoord: </label>
+      <input type="password" name="password" id="password" required>
+      <img src="../static/images/footer.knop.png" alt="Footer knop">
+      <input class='loginbutton' type="submit" value="login">
     </form>
+
+    <img class="pijltjerechts" src="../static/images/pijltjerechts.png" alt="">
       
   </main> 
 </body>

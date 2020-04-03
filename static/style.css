@@ -1,18 +1,156 @@
-*{
+/* Setting standards */
+
+* {
     margin: 0;
-    padding: 0;
-    
 }
-body{
+
+body {
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Montserrat';
+    letter-spacing: 1px;
+}
+
+a {
+    text-decoration: none;
+    color: #FFFFFD;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.logo {
+    width: 50px;
+    margin-top: 10px;
+}
+
+/* Begin pagina */
+
+.homeSecond{
+    background-image: url(../static/images/home.background.png);
+    background-size: cover;
+}
+
+.homeSecond h1 {
+    color: #FFFFFD;
+    width: 240px;
+    position: absolute;
+    right: 20px;
+    bottom: 170px;
+    font-size: 36px;
+}
+
+.homeSecond h1 span {
+    font-size: 62px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+
+footer img {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 170px;
+    z-index: -1;
+}
+
+footer a p {
+    font-size: 28px;
+    margin: 0 50px 35px 0;
+    color: #FFFFFD;
+    z-index: 1;
+}
+
+.pijltjerechts {
+    width: 15px;
+    z-index: 1;
+    margin: 0 30px 38px 0;
+}
+
+/* Login pagina */
+
+.login {
     background-color: #2945A0;
 }
 
-.normalmain{
-    background-color: #FFFFFD;
-    border-radius: 30px 30px 0px 0px;
+.login header {
+    text-align: center;
 }
 
-.onderknop{
+.login main div {
+    display: flex;
+}
+
+.login main h1{
+    color: #FFFFFD;
+    margin: 70px 0 0 30px;
+}
+
+.login main p {
+    color: #FFFFFD;
+    margin: 85px 0 0 40px;
+    text-decoration: underline;
+}
+
+.login main form {
+    display: flex;
+    flex-direction: column;
+    margin: 50px 30px 10px;
+}
+
+.login main form label {
+    margin: 25px 0 5px;
+}
+
+.login main form input {
+    margin-top: 5px;
+    height: 30px;
+    border: none;
+    border-radius: 8px;
+}
+
+.login main form label {
+    color: #53D0EC;
+    font-weight: bold;
+}
+
+.login main form img {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 170px;
+}
+
+.loginbutton {
+    position: absolute;
+    width: 180px;
+    bottom: 0px;
+    right: 0;
+    padding: 25px 0 35px;
+    margin-bottom: 35px;
+    background: none;
+    font-family: 'Montserrat';
+    font-size: 28px;
+    letter-spacing: 1px;
+    color: #FFFFFD;
+}
+
+.login main .pijltjerechts {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 15px;
+    z-index: 1;
+    margin: 0 30px 38px 0;
+}
+
+/* .onderknop{
     font-family: 'Montserrat';
     font-size: 2rem;
     margin: 0rem 0rem 0rem 15rem;
@@ -40,8 +178,9 @@ header{
     background-image: url(./images/pijltjelinks.png);
     background-position: center center;
     border: none;
-    /* position: absolute; */
+    position: absolute;
 }
+
 #filterbutton{
     width: 1.8rem;
     height: 2rem;
@@ -83,7 +222,7 @@ fieldset{
 
 }
 
-#form{
+.form{
     padding: 1.5rem 1.2rem 0rem 1.2rem;
 }
 
@@ -183,10 +322,10 @@ footer{
     padding-left: 0.6rem;
 }
 
-/* Dit is voor resultaten scherm */
+// Dit is voor resultaten scherm
 
 #mainresults{
-    /* height: 50rem; */
+    height: 50rem;
     padding: 1.5rem;
 }
 
@@ -247,4 +386,4 @@ footer{
     margin-right: 0.5rem;
     background-color: rgba(255,255,253,.5);
     border-radius: 7px;
-}
+} */

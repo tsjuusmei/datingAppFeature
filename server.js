@@ -53,7 +53,6 @@ app.post("/results", filter);
 app.post("/login", loginpost);
 
 function home(req, res) {
-  console.log(req.session);
   let { userId } = req.session;
   if ((userId = null)) {
     res.render("home.ejs");
@@ -91,7 +90,6 @@ function people(req, res, next) {
     if (err) {
       next(err);
     } else {
-      console.log(data);
       res.render("index.ejs", { data: data });
     }
   }
@@ -108,7 +106,6 @@ function filter(req, res) {
     if (err) {
       next(err);
     } else {
-      console.log(data);
       res.render("index.ejs", { data: data });
     }
   }
