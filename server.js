@@ -134,6 +134,7 @@ async function registerpost(req, res, next) {
     email: req.body.email,
     password: hashedPassword,
     age: req.body.age,
+    hair: req.body.hair,
     gender: req.body.gender,
     sexuality: req.body.sexuality,
     filter: {gender: "", sexuality: ""},
