@@ -64,7 +64,7 @@ function home(req, res) {
 }
 
 function results(req, res, next) {
-  db.collection("datingapp").find({}).toArray(done);
+  db.collection("users").find({}).toArray(done);
   function done(err, data) {
     if (err) {
       next(err);
@@ -87,25 +87,26 @@ function login(req, res) {
 }
 
 function loginpost(req, res) {
-  const email = res.body.email;
-  const password = res.body.password;
-  if (email && password) {
-    const user = db
-      .collection("datingapp")
-      .find((user) => user.email === email && user.password === password);
-    if (user) {
-      req.session.userId = data._id;
-      return res.redirect("/results");
-    }
-  }
-  res.redirect("/login");
+  const email = req.body.email;
+  const password = req.body.password;
+  if (email && password){
+    db.collection('users').findOne({email: email, password: password}, done)
+    function done(err, data){
+        if (err){
+            next(err)
+        }else {
+            req.session.userId = data
+            res.redirect('/results')
+      }
+    }  
+  } 
 }
 
 function filter(req, res) {
   let sexualityFilter = req.body.sexuality;
   let genderFilter = req.body.gender;
 
-  db.collection("datingapp")
+  db.collection("users")
     .find({ gender: genderFilter, sexuality: sexualityFilter })
     .toArray(done);
   function done(err, data) {
@@ -118,7 +119,7 @@ function filter(req, res) {
 }
 
 function registerpost(req, res, next) {
-  db.collection('register').insertOne({
+  db.collection('users').insertOne({
       firstname: req.body.firstname,
       lastname: req.body.lastname,
       email: req.body.email,
