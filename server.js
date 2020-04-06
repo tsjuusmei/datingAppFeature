@@ -6,6 +6,7 @@ const ObjectID = mongo.ObjectID;
 const session = require("express-session");
 require("dotenv").config();
 
+// Dit is een test of ik dingen kan aanpassen
 
 
 const app = express();
