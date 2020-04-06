@@ -87,20 +87,23 @@ function login(req, res) {
   res.render("login.ejs");
 }
 
-function loginpost(req, res) {
-  const email = req.body.email;
-  const password = req.body.password;
-  if (email && password){
-    db.collection('users').findOne({email: email, password: password}, done)
-    function done(err, data){
-        if (err){
-            next(err)
-        }else {
-            req.session.userId = data
-            res.redirect('/results')
-      }
-    }  
-  } 
+async function loginpost(req, res) {
+
+  const user = await db.collection('users').findOne({email: req.body.email})
+
+  if (user == null) {
+    return res.status(400).send('Cannot find user')
+  }
+  try {
+    if (await bcrypt.compare(req.body.password, user.password)) {
+      const data = req.session.userId;
+      res.redirect('/results')
+    } else {
+      res.send('Login failed')
+    }
+  } catch (err) {
+    console.log(err)
+  }
 }
 
 function filter(req, res) {
@@ -119,15 +122,22 @@ function filter(req, res) {
   }
 }
 
-function registerpost(req, res, next) {
+async function registerpost(req, res, next) {
+
+  const hashedPassword = await bcrypt.hash(req.body.password, 10)
+
+  console.log(hashedPassword)
+
   db.collection('users').insertOne({
       firstname: req.body.firstname,
       lastname: req.body.lastname,
       email: req.body.email,
-      password: bcrypt.hash(req.body.password, 10),
+      password: hashedPassword,
       age: req.body.age,
       gender: req.body.gender,
-      sexuality: req.body.sexuality
+      sexuality: req.body.sexuality,
+      visitedBy: [""],
+      likedBy: [""]
   }, done)
 
   function done(err, data) {
