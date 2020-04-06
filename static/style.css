@@ -1,97 +1,203 @@
-*{
+/* Setting standards */
+
+* {
     margin: 0;
-    padding: 0;
-    
-}
-body{
-    background-color: #2945A0;
 }
 
-.normalmain{
-    background-color: #FFFFFD;
-    border-radius: 30px 30px 0px 0px;
-}
-
-.onderknop{
+body {
+    width: 100vw;
+    height: 100vh;
     font-family: 'Montserrat';
-    font-size: 2rem;
-    margin: 0rem 0rem 0rem 15rem;
+    letter-spacing: 1px;
+}
+
+a {
     text-decoration: none;
     color: #FFFFFD;
 }
 
-.pijltjerechts{
-    width: 0.7rem;
-    margin-left: 0.5rem;
+ul {
+    list-style-type: none;
+    padding: 0;
 }
 
-header{
+.logo {
+    width: 50px;
+    margin-top: 10px;
+}
+
+.title {
+    color: #FFFFFD;
+    margin: 70px 0 0 30px;
+    font-size: 38px;
+}
+
+.sidetitle {
+    color: #FFFFFD;
+    margin: 90px 0 0 40px;
+    text-decoration: underline;
+}
+
+/* Begin pagina */
+
+.homeSecond{
+    background-image: url(../static/images/home.background.png);
+    background-size: cover;
+}
+
+.homeSecond h1 {
+    color: #FFFFFD;
+    width: 240px;
+    position: absolute;
+    right: 20px;
+    bottom: 170px;
+    font-size: 36px;
+}
+
+.homeSecond h1 span {
+    font-size: 62px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+
+footer img {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 170px;
+    z-index: -1;
+}
+
+footer a p {
+    font-size: 28px;
+    margin: 0 50px 35px 0;
+    color: #FFFFFD;
+    z-index: 1;
+}
+
+.pijltjerechts {
+    width: 15px;
+    z-index: 1;
+    margin: 0 30px 38px 0;
+}
+
+/* Login pagina */
+
+.login {
+    background-color: #2945A0;
+}
+
+.login header {
+    text-align: center;
+}
+
+.login main div {
     display: flex;
-    justify-content: space-around;
 }
 
-#backbutton{
-    width: 1.14rem;
-    height: 2rem;
-    margin: 0.7rem 0rem 0rem 1rem;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-color: #2945A0 ;
-    background-image: url(./images/pijltjelinks.png);
-    background-position: center center;
-    border: none;
-    /* position: absolute; */
-}
-#filterbutton{
-    width: 1.8rem;
-    height: 2rem;
-    margin: 0.8rem 1rem 0rem 0rem;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-color: #2945A0 ;
-    background-image: url(./images/filtertwee.png);
-    background-position: center center;
-    border: none;
-    
-}
-
-
-#logo{
-    width: 3rem;
-    display: block;
-    margin: auto;
-    padding: 0.5rem 0rem 1rem 0rem;
-}
-
-#elementone{
-    width: 6rem;
-}
-
-h1{
-    font-family: 'Montserrat';
-    color:  #2945A0;
-    font-size: 1.9rem;
-
-}
-
-fieldset{
-    margin-top: 3rem;
-    height: 30rem;
-    border: none;
+.login main form {
     display: flex;
     flex-direction: column;
-
+    margin: 50px 30px 10px;
 }
 
-#form{
-    padding: 1.5rem 1.2rem 0rem 1.2rem;
+.login main form label {
+    margin: 25px 0 5px;
 }
 
-legend{
-    font-size: 1.5rem;
+.login main form input {
+    margin-top: 5px;
+    height: 30px;
+    border: none;
+    border-radius: 8px;
+}
+
+.login main form label {
+    color: #53D0EC;
+    font-weight: bold;
+}
+
+.login main form img {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 170px;
+}
+
+.loginbutton {
+    position: absolute;
+    width: 180px;
+    bottom: 0px;
+    right: 0;
+    padding: 25px 0 35px;
+    margin-bottom: 35px;
+    background: none;
     font-family: 'Montserrat';
-    color:  #2945A0;
-    margin-bottom: 2rem;
+    font-size: 28px;
+    letter-spacing: 1px;
+    color: #FFFFFD;
+}
+
+.login main .pijltjerechts {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 15px;
+    z-index: 1;
+    margin: 0 30px 38px 0;
+}
+
+/* Register pagina */
+
+.register {
+    background-color: #2945A0;
+}
+
+.register header {
+    text-align: center;
+}
+
+.register main div {
+    display: flex;
+}
+
+.register main form {
+    display: flex;
+    flex-direction: column;
+    margin: 50px 50px 10px 30px;
+}
+
+.register main form > label {
+    margin: 25px 0 5px;
+    color: #53D0EC;
+    font-weight: bold;
+}
+
+.register main form > input {
+    margin-top: 5px;
+    height: 30px;
+    border: none;
+    border-radius: 8px;
+}
+
+#firstname, #lastname {
+    margin-right: 100px;
+}
+
+.register main > form div {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.labeltitle {
+    margin: 25px 0 5px;
+    color: #53D0EC;
+    font-weight: bold;
 }
 
 .label{
@@ -99,28 +205,19 @@ legend{
     font-size: 1.2rem;
     color: #FFFFFD ;
     background-color: #53D0EC;
-    padding: 1rem;
-    margin: 0rem 4rem 0rem 4rem;
-    border-radius: 14px;
-    width: 11rem;
+    padding: 5px;
+    margin: 2px;
+    border-radius: 10px;
+    width: 130px;
     text-align: center;
-    margin-top: 1rem;
-    box-shadow: 3px 3px 6px lightgray;
-    
+    margin-top: 12px;
+    box-shadow: 3px 3px 6px navy;  
 }
 
-.agelabel{
-    font-size: 1rem;
-    font-family: 'Montserrat';
-    color:  #11A3CB;
-    margin-bottom: 2rem;
-}
-
- .radio{
+.radio{
     opacity: 0;
     width: 0;
     height: 0;
-    
 }
 
 .radio:checked + label{
@@ -128,123 +225,40 @@ legend{
     background-color: #11A3CB;
 }
 
+.age {
+    width: 60px;
+}
 
-#titlefirstpage {
-    margin: 28rem 0rem 4.6rem 7rem;
+.hair {
+    width: 200px;
+}
+
+.register > main form img {
+    position: absolute;
+    bottom: -350px;
+    right: 0;
+    width: 170px;
+}
+
+.registerbutton {
+    position: absolute;
+    width: 175px;
+    bottom: -350px;
+    right: 0;
+    padding: 25px 0 35px;
+    margin-bottom: 35px;
+    background: none;
     font-family: 'Montserrat';
-    color: #FFFFFD;
-    font-size: 2.2rem;
-}
-
-
-h1 #luvely{
-    font-size: 3.8rem;
+    font-size: 28px;
+    letter-spacing: 1px;
     color: #FFFFFD;
 }
 
-#movies{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-#movies label{
-    width: 6rem;
-    margin: 1rem;
-}
-
-footer{
-    background-color: #FFFFFD ;
-    display: flex;
-    justify-content: flex-end;
-}
-
-#next{
-    font-family: 'Montserrat';
-    font-size: 1.8rem;
-    color: #FFFFFD;
-    background-image: url(../static/images/nextknopbg.png);
-    background-size: cover;
-    background-color: transparent;
-    border: none;
-    width: 12rem;
-    height: 6rem;
-
-}
-
-.submitButton{
-    background-color: #FFFFFD ;
-    display: flex;
-    justify-content: flex-end;
-}
-
-#next img{
-    width: 0.7rem;
-    padding-left: 0.6rem;
-}
-
-/* Dit is voor resultaten scherm */
-
-#mainresults{
-    /* height: 50rem; */
-    padding: 1.5rem;
-}
-
-.person{
-    position: relative;
-    width: 20.5rem;
-    height: 30rem;
-    color: #FFFFFD;
-    font-family: 'Montserrat' ;
-    padding-top: 2rem;
-    
-  }
-.person img{
-    width: 100%;
-    border-radius: 15px;
-    height: 100%;
-}
-
-
-.info{
-    position: absolute; 
-    top: 25.5rem; 
-    left: 1rem; 
-    width: 100%; 
-    
-    
-}
-
-.person h2{
-    font-size: 1.5rem;
-    text-decoration: underline;
-      
-   }
- 
-
-.basics{
-    display: flex;
-    flex-direction: row;
-    list-style-type: none;
-    
-}
-
-.basics li{
-    padding-right:0.5rem ;
-}
-
-.specific{
-    color: #2945A0;
-    display: flex;
-    flex-direction: row;
-    list-style-type: none;
-    margin-top: 0.5rem;
-   
-}
-
-.specific li{
-    padding: 0.5rem 1.5rem  ;
-    margin-right: 0.5rem;
-    background-color: rgba(255,255,253,.5);
-    border-radius: 7px;
+.register main .pijltjerechts {
+    position: absolute;
+    bottom: -350px;
+    right: 0;
+    width: 15px;
+    z-index: 1;
+    margin: 0 15px 38px 0;
 }

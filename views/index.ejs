@@ -1,17 +1,40 @@
 <!doctype html>
 
+<html lang="en">
+<head>
+    <%- include('./components/head') %>
+    <title>index</title>
+</head>
 
 <body>
-<h1> Results: </h1>
+  <header>
 
-<a href="/filter">Add filters</a>
+    <img id="logo" src="../static/images/logo.png" alt="logo luvely">
 
-<% for (var index = 0; index < data.length; index++) { %>
+  </header>
 
-  <section>
-    <h2> <%= data[index].firstName %> </h2>
-    <p> <%= data[index].sexuality %> </p>
-  </section>
-<% } %>
+  <main class="normalmain">
 
+    <div class="form">
+
+      <div id="link">
+
+        <h1> Results: </h1>
+   
+        <a href="/filter">Add filters</a>
+        
+      </div>
+      <article id="allpeople">
+    <% for (var index = 0; index < data.length; index++) { %>
+    
+        <article class="personTwee">
+
+          <h2> <%= data[index].firstName %> </h2>
+          <p> <%= data[index].sexuality %> </p>
+        </article>
+        
+      
+    <% } %>
+    </article>
+</main> 
 </body>

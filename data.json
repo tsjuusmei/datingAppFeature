@@ -1,42 +1,16 @@
-[{
-        "id" : "00001", 
-        "firstName" : "Sanne ", 
-        "lastName" : "Pietersma ",
-        "gender" : "woman",
-        "age" : "21 years",
-        "sexuality" : "Bi-sexual"
-    },
+[
     {
-        "id" : "00002", 
-        "firstName" : "Lara ", 
-        "lastName" : "Pietersma ",
-        "gender" : "woman",
-        "age" : "21 years",
-        "sexuality" : "Straight"
-    },
-    {
-        "id" : "00003", 
-        "firstName" : "Joep ", 
-        "lastName" : "Pietersma ",
-        "gender" : "woman",
-        "age" : "21 years",
-        "sexuality" : "Straight"
-    },
-    {
-        "id" : "00004", 
-        "firstName" : "Sander ", 
-        "lastName" : "Pietersma ",
-        "gender" : "woman",
-        "age" : "21 years",
-        "sexuality" : "Gay"
-    },
-    {
-        "id" : "00005", 
-        "firstName" : "Kaylee", 
-        "lastName" : "Pietersma ",
-        "gender" : "woman",
-        "age" : "21 years",
-        "sexuality" : "Straight"
+        "id" : 1,
+        "firstName" : "",
+        "lastName" : "",
+        "userName" : "",
+        "email" : "",
+        "password" : "",
+        "age" : 21 ,
+        "hairColor" : ""
+      
+        
     }
     
-  ]
+
+]
