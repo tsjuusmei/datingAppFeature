@@ -126,8 +126,6 @@ async function registerpost(req, res, next) {
 
   const hashedPassword = await bcrypt.hash(req.body.password, 10)
 
-  console.log(hashedPassword)
-
   db.collection('users').insertOne({
     firstname: req.body.firstname,
     lastname: req.body.lastname,
