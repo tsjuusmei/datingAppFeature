@@ -1,9 +1,12 @@
+
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongo = require("mongodb");
 const ObjectID = mongo.ObjectID;
 const session = require("express-session");
 require("dotenv").config();
+
+
 
 const app = express();
 
@@ -26,6 +29,7 @@ mongo.MongoClient.connect(url, { useUnifiedTopology: true }, function (
 });
 
 // THIS IS WHERE THE CODE FOR THE DATABASE ENDS
+
 
 app.use("/static", express.static("static"));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -76,6 +80,7 @@ function results(req, res, next) {
 
 function register (req, res) {
   res.render('register.ejs')
+
 }
 
 function filters(req, res) {
