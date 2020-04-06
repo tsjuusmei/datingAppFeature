@@ -129,16 +129,17 @@ async function registerpost(req, res, next) {
   console.log(hashedPassword)
 
   db.collection('users').insertOne({
-      firstname: req.body.firstname,
-      lastname: req.body.lastname,
-      email: req.body.email,
-      password: hashedPassword,
-      age: req.body.age,
-      gender: req.body.gender,
-      sexuality: req.body.sexuality,
-      visitedBy: [""],
-      likedBy: [""]
-  }, done)
+    firstname: req.body.firstname,
+    lastname: req.body.lastname,
+    email: req.body.email,
+    password: hashedPassword,
+    age: req.body.age,
+    gender: req.body.gender,
+    sexuality: req.body.sexuality,
+    filter: {gender: "", sexuality: ""},
+    visitedBy: [""],
+    likedBy: [""]
+}, done)
 
   function done(err, data) {
       if (err) {
