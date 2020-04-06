@@ -6,7 +6,6 @@ const ObjectID = mongo.ObjectID;
 const session = require("express-session");
 require("dotenv").config();
 
-// Dit is een test of ik dingen kan aanpassen
 
 
 const app = express();
@@ -54,10 +53,12 @@ app.get("/results", results);
 app.get('/register', register)
 app.get("/filter", filters);
 app.get("/login", login);
+app.get("/profile", profile)
 
 app.post("/results", filter);
 app.post("/login", loginpost);
 app.post('/register', registerpost)
+app.post("/profile", profilepost)
 
 function home(req, res) {
   let { userId } = req.session;
@@ -81,7 +82,6 @@ function results(req, res, next) {
 
 function register (req, res) {
   res.render('register.ejs')
-
 }
 
 function filters(req, res) {
@@ -90,6 +90,11 @@ function filters(req, res) {
 
 function login(req, res) {
   res.render("login.ejs");
+}
+
+function profile(req, res){
+  // In this function we use the data from the current userId aka the session 
+ res.render('profile.ejs', {data:req.session.userId}) 
 }
 
 function loginpost(req, res) {
@@ -107,6 +112,22 @@ function loginpost(req, res) {
     }  
   } 
 }
+// In this function we make sure the user can update it's haircolor and this wil be changed in the database
+function profilepost(req,res){
+  db.collection('datingapp').updateOne(
+         // First we find the userId aka the session and then we update the haircolor with the input from the user
+         {firstName: req.session.userId.firstName}, 
+         {$set: {hair: req.body.hair}})
+         
+         db.collection('datingapp').findOne({firstName: req.session.userId.firstName}, done)
+         function done(err, data){
+             if (err){
+                 next(err)
+             }else {
+                 req.session.userId = data
+                 res.redirect('/results')
+             }}         
+ }
 
 function filter(req, res) {
   let sexualityFilter = req.body.sexuality;
