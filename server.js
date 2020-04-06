@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const mongo = require("mongodb");
 const ObjectID = mongo.ObjectID;
 const session = require("express-session");
+const bcrypt = require('bcrypt')
 require("dotenv").config();
 
 const app = express();
@@ -123,7 +124,7 @@ function registerpost(req, res, next) {
       firstname: req.body.firstname,
       lastname: req.body.lastname,
       email: req.body.email,
-      password: req.body.password,
+      password: bcrypt.hash(req.body.password, 10),
       age: req.body.age,
       gender: req.body.gender,
       sexuality: req.body.sexuality
