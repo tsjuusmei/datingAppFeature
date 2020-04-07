@@ -9,6 +9,7 @@ body {
     height: 100vh;
     font-family: 'Montserrat';
     letter-spacing: 1px;
+    background-color: #2945A0;
 }
 
 a {
@@ -37,6 +38,13 @@ ul {
     margin: 90px 0 0 40px;
     text-decoration: underline;
 }
+
+.normalmain{
+    background-color: #FFFFFD;
+    border-radius: 30px 30px 0px 0px;
+    min-height: 50rem;
+}
+
 
 /* Begin pagina */
 
@@ -317,4 +325,72 @@ footer a p {
     border: none;
     display: flex;
     flex-direction: column;
+}
+
+/* CSS FOR RESULTS */
+
+.results header {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+#filterbutton{
+    top: 1rem;
+    left: 1.5rem;
+    position: absolute;
+    width: 1.5rem;
+}
+
+#logo{
+    width: 3rem;
+    display: block;
+    margin: auto;
+    padding: 0.5rem 0rem 1rem 0rem;
+}
+
+#profilebutton{
+    top: 1rem;
+    right: 1.5rem;
+    position: absolute;
+    width: 1.5rem;
+}
+
+.maininhoud{
+    padding: 1.5rem 1.2rem 0rem 1.2rem;
+}
+
+.results h1{
+    font-family: 'Montserrat';
+    color:  #2945A0;
+    font-size: 1.9rem;
+}
+
+.person{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 2rem 0rem;
+    padding-bottom: 1rem;
+}
+
+.allpeople img{
+    width: 8rem;
+    height: 8rem;
+    object-fit: cover;
+    border-radius: 14px;
+}
+
+.info{
+    color: #2945A0;
+    margin-right: 4.5rem;
+}
+
+.info h2{
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+}
+
+.info section{
+    font-size: 0.8rem;
 }
