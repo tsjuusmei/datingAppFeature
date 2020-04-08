@@ -17,15 +17,37 @@
   <main class="normalmain">
 
     <div class="maininhoud">
-
-    <h1> Results: </h1>
-    <a  href="/filter"><img id="visitedbutton" src="../static/images/visited.png" alt="Filter button"></a>
-      
+    <section class="titleoptions">
+      <h1> Results: </h1>
+      <section>
+        <a  href="/filter"><img id="visitedbutton" src="../static/images/visited.png" alt="visitedbutton"></a>
+        <a  href="/filter"><img id="likedbutton" src="../static/images/hartjeuitlijn.png" alt="liked pagina"></a>
+      </section>
+    </section>
     <article class="allpeople">
       <% for (var index = 0; index < data.length; index++) { %>
         <article class="person">
           <section>
-            <img src="../static/images/<%= data[index].image%> " alt="Profile picture of <%= data[index].Firstname%>">
+            <img id="personimage" src="../static/images/<%= data[index].image%> " alt="Profile picture of <%= data[index].Firstname%>">
+          </section>
+          <section class="info">
+          <h2> <%= data[index].firstName %> </h2>
+            <section>
+            <p> <%= data[index].sexuality %></p>
+            <p> <%= data[index].age %> years old</p>
+            <p> <%= data[index].hair %> hair </p>
+            </section>
+          </section>
+        </article>
+      <% } %>
+    </article>
+
+    <article class="allpeople">
+      <% for (var index = 0; index < data.length; index++) { %>
+        <article class="person">
+          <section class="test">
+            <img id="personimage" src="../static/images/<%= data[index].image%> " alt="Profile picture of <%= data[index].Firstname%>">
+            <a  href="/filter"><img id="likedbybutton" src="../static/images/likedby.png" alt="likedby"></a>
           </section>
           <section class="info">
           <h2> <%= data[index].firstName %> </h2>

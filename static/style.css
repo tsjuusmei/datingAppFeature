@@ -374,11 +374,14 @@ footer a p {
     padding-bottom: 1rem;
 }
 
-.allpeople img{
+#personimage{
     width: 8rem;
     height: 8rem;
     object-fit: cover;
     border-radius: 14px;
+    position: relative;
+    top: 0rem;
+    left: 0rem;
 }
 
 .info{
@@ -393,4 +396,29 @@ footer a p {
 
 .info section{
     font-size: 0.8rem;
+}
+
+#visitedbutton{
+    width: 2.5rem;
+    padding: 0rem 1rem 0.2rem 0rem;
+}
+
+#likedbutton{
+    width: 2rem;
+}
+
+#likedbybutton{
+    width: 3rem;
+    position: relative;
+    left: 6rem ;
+    top: -2rem;
+}
+
+.test{
+    width: 5rem;
+}
+
+.titleoptions{
+    display: flex;
+    justify-content: space-between;
 }
