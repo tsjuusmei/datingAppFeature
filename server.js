@@ -75,14 +75,21 @@ function home(req, res) {
 }
 
 function results(req, res, next) {
-  db.collection("users").find({}).toArray(done);
-  function done(err, data) {
-    if (err) {
-      next(err);
-    } else {
-      res.render("index.ejs", { data: data });
+  db.collection('users').find({
+    // This is where we find the userId and the gender & sexuality they want to filter on and we filter the rest of the people with the .find
+    $and: [  
+    {firstName:{$ne: req.session.user.firstName}},
+    {gender: req.session.user.filter['gender']}, 
+    {sexuality: req.session.user.filter['sexuality']}
+]}).toArray(done)
+    function done(err, data){
+        if (err){
+            next(err)
+        } else {
+            // 
+            res.render('index.ejs', {data: data})
+        }
     }
-  }
 }
 
 function register (req, res) {
@@ -152,19 +159,20 @@ async function profilepost(req,res){
  }
 
 function filter(req, res) {
-  let sexualityFilter = req.body.sexuality;
-  let genderFilter = req.body.gender;
-
-  db.collection("users")
-    .find({ gender: genderFilter, sexuality: sexualityFilter })
-    .toArray(done);
-  function done(err, data) {
-    if (err) {
-      next(err);
-    } else {
-      res.render("index.ejs", { data: data });
-    }
-  }
+  db.collection('users').updateOne(
+    {firstName: req.session.user.firstName}, 
+    {$set: {filter: req.body}})
+// This is where we find the userId aka the session so we update the preferences for the right user     
+db.collection('users').findOne({firstName: req.session.user.firstName}, done)
+function done(err, data){
+    if (err){
+        next(err)
+    }else {
+        // This is where we redirect the user to the list of people with the filters on
+        req.session.user = data
+        res.redirect('/results')
+    }} 
+        
 }
 
 async function registerpost(req, res, next) {
