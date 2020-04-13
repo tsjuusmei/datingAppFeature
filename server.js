@@ -77,7 +77,7 @@ function results(req, res, next) {
     if (err) {
       next(err);
     } else {
-      res.render("index.ejs", { data: data });
+      res.render("visitors.ejs", { data: data });
     }
   }
 }
@@ -157,7 +157,7 @@ function filter(req, res) {
     if (err) {
       next(err);
     } else {
-      res.render("index.ejs", { data: data });
+      res.render("visitors.ejs", { data: data });
     }
   }
 }
