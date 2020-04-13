@@ -1,10 +1,16 @@
+const helmet = require('helmet')
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongo = require("mongodb");
 const ObjectID = mongo.ObjectID;
 const session = require("express-session");
 const bcrypt = require('bcrypt')
+
 require("dotenv").config();
+
+app.use(helmet())
+app.use('/static',express.static('static'))
+app.use(bodyParser.urlencoded({extended: true}))
 
 const app = express();
 
@@ -27,7 +33,6 @@ mongo.MongoClient.connect(url, { useUnifiedTopology: true }, function (
 });
 
 // THIS IS WHERE THE CODE FOR THE DATABASE ENDS
-
 
 app.use("/static", express.static("static"));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -57,16 +62,20 @@ app.get("/likes", likes)
 
 app.post("/results", filter);
 app.post("/login", loginpost);
-app.post("/register", registerpost);
-app.post("/profile", profilepost);
 app.post("/like", likepost);
+app.post('/register', registerpost)
+app.post("/profile", profilepost)
+app.post('/logout', logoutpost)
 
 function home(req, res) {
   let { userId } = req.session;
-  if ((userId = null)) {
+  if (!userId) {
     res.render("home.ejs");
+    console.log(req.session);
   } else {
-    res.render("homeSecond.ejs");
+    res.redirect('/results');
+    console.log(req.session);
+    
   }
 }
 
@@ -92,6 +101,7 @@ function filters(req, res) {
 function login(req, res) {
   res.render("login.ejs");
 }
+
 
 function profile(req, res) {
   // In this function we use the data from the current user aka the session 
@@ -133,20 +143,26 @@ async function loginpost(req, res) {
 // In this function we make sure the user can update it's haircolor and this wil be changed in the database
 function profilepost(req, res) {
   db.collection('users').updateOne(
-    // First we find the user aka the session and then we update the haircolor with the input from the user
-    { firstName: req.session.user.firstName },
-    { $set: { hair: req.body.hair } })
-
-  db.collection('users').findOne({ firstName: req.session.user.firstName }, done)
-  function done(err, data) {
-    if (err) {
-      next(err)
-    } else {
-      req.session.user = data
-      res.redirect('/results')
-    }
-  }
-}
+         // First we find the userId aka the session and then we update the haircolor with the input from the user
+         {firstName: req.session.user.firstName}, 
+         {$set: {
+          email: req.body.email,
+          password: req.body.password,
+          age: req.body.age,
+          hair: req.body.hair,
+          gender: req.body.gender,
+          sexuality: req.body.sexuality
+        }})
+         
+         db.collection('users').findOne({firstName: req.session.user.firstName}, done)
+         function done(err, data){
+             if (err){
+                 next(err)
+             }else {
+                 req.session.userId = data
+                 res.redirect('/results')
+             }}         
+ }
 
 function filter(req, res) {
   let sexualityFilter = req.body.sexuality;
@@ -215,5 +231,17 @@ async function likepost(req, res) {
   }
 }
 
+function logoutpost(req,res){
+  // This is where we destroy the session
+  req.session.destroy(err => {
+      if(err){
+          return res.redirect('/results')
+      } else {
+          // This is where we clear the cookie and we redirect the user to the homepage
+          res.clearCookie(process.env.SESS_NAME)
+          res.redirect('/')
+      }
+  })
+}
 
 app.listen(port, () => console.log("Example app listening on port" + port));

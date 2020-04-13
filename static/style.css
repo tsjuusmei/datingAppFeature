@@ -44,6 +44,9 @@ ul {
     border-radius: 30px 30px 0px 0px;
     min-height: 50rem;
 }
+.form{
+    padding: 1.5rem 1.2rem 0rem 1.2rem;
+}
 
 
 /* Begin pagina */
@@ -115,6 +118,8 @@ footer a p {
 
 .login main form label {
     margin: 25px 0 5px;
+    color: #53D0EC;
+    font-weight: bold;
 }
 
 .login main form input {
@@ -124,10 +129,6 @@ footer a p {
     border-radius: 8px;
 }
 
-.login main form label {
-    color: #53D0EC;
-    font-weight: bold;
-}
 
 .login main form img {
     position: absolute;
@@ -218,8 +219,7 @@ footer a p {
     border-radius: 10px;
     width: 130px;
     text-align: center;
-    margin-top: 12px;
-    box-shadow: 3px 3px 6px navy;  
+    margin-top: 12px; 
 }
 
 .radio{
@@ -283,6 +283,7 @@ footer a p {
 }
 .profileinfo ul li{
     list-style-type: none;
+    font-size: 0.8rem;
 }
 
 #profileimg{
@@ -328,12 +329,29 @@ footer a p {
 }
 
 .profilefieldset{
-    margin-top: 3rem;
-    /* height: 17rem; */
     border: none;
     display: flex;
     flex-direction: column;
+    padding: 0rem;
+    margin: 1rem 0rem;
 }
+
+.link{
+    display: flex;
+    justify-content: space-between;
+}
+
+.buttonindex{
+    font-family: 'Montserrat';
+    background-color: #53D0EC;
+    color: #FFFFFD;
+    text-decoration: none;
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    border: none;
+}
+
+
 
 /* CSS FOR RESULTS */
 
