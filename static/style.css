@@ -414,7 +414,7 @@ h1{
     width: 2rem;
 }
 
-#likedbybutton{
+.likedbybutton{
     width: 3rem;
     position: relative;
     left: 6rem ;

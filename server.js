@@ -59,8 +59,9 @@ app.get("/likes", likes)
 
 app.post("/results", filter);
 app.post("/login", loginpost);
-app.post('/register', registerpost);
+app.post("/register", registerpost);
 app.post("/profile", profilepost);
+app.post("/like", likepost)
 
 function home(req, res) {
   let { userId } = req.session;
@@ -82,7 +83,7 @@ function results(req, res, next) {
   }
 }
 
-function register (req, res) {
+function register(req, res) {
   res.render('register.ejs')
 }
 
@@ -94,25 +95,27 @@ function login(req, res) {
   res.render("login.ejs");
 }
 
-function profile(req, res){
+function profile(req, res) {
   // In this function we use the data from the current userId aka the session 
- res.render('profile.ejs', {data:req.session.userId}) 
+  res.render('profile.ejs', { data: req.session.userId })
 }
 
-function likes(req, res) {
-  db.collection("users").find({}).toArray(done);
-  function done(err, data) {
-    if (err) {
-      next(err);
-    } else {
-      res.render("likes.ejs", { data: data });
-    }
-  }
+async function likes(req, res) {
+  const promises = []; // create an array to store promises
+  const user = req.session.user;
+  user.likedBy.forEach((likerId) => {
+    // make a foreach for each like in likedBy array in db
+    promises.push(
+      db.collection("users").findOne({ _id: new ObjectID(likerId) })
+    ); // For each like in the likedBy array, get the corresponding user from the database and push it as a promise to the promises[]
+  });
+  const likes = await Promise.all(promises);
+  res.render('likes', { likes: likes, user })
 }
 
 async function loginpost(req, res) {
 
-  const user = await db.collection('users').findOne({email: req.body.email})
+  const user = await db.collection('users').findOne({ email: req.body.email })
 
   if (user == null) {
     return res.status(400).send('Cannot find user')
@@ -130,21 +133,22 @@ async function loginpost(req, res) {
 }
 
 // In this function we make sure the user can update it's haircolor and this wil be changed in the database
-function profilepost(req,res){
+function profilepost(req, res) {
   db.collection('users').updateOne(
-         // First we find the userId aka the session and then we update the haircolor with the input from the user
-         {firstName: req.session.userId.firstName}, 
-         {$set: {hair: req.body.hair}})
-         
-         db.collection('users').findOne({firstName: req.session.userId.firstName}, done)
-         function done(err, data){
-             if (err){
-                 next(err)
-             }else {
-                 req.session.userId = data
-                 res.redirect('/results')
-             }}         
- }
+    // First we find the userId aka the session and then we update the haircolor with the input from the user
+    { firstName: req.session.userId.firstName },
+    { $set: { hair: req.body.hair } })
+
+  db.collection('users').findOne({ firstName: req.session.userId.firstName }, done)
+  function done(err, data) {
+    if (err) {
+      next(err)
+    } else {
+      req.session.userId = data
+      res.redirect('/results')
+    }
+  }
+}
 
 function filter(req, res) {
   let sexualityFilter = req.body.sexuality;
@@ -175,18 +179,45 @@ async function registerpost(req, res, next) {
     hair: req.body.hair,
     gender: req.body.gender,
     sexuality: req.body.sexuality,
-    filter: {gender: "", sexuality: ""},
+    filter: { gender: "", sexuality: "" },
     visitedBy: [""],
     likedBy: [""]
-}, done)
+  }, done)
 
   function done(err, data) {
-      if (err) {
-          next(err)
-      } else {
-          res.redirect('login')
-      }
+    if (err) {
+      next(err)
+    } else {
+      res.redirect('login')
+    }
   }
 }
+
+async function likepost(req, res) {
+  const id = req.body.id;
+  console.log(id)
+  const likedUser = await db
+    .collection("users")
+    .findOne({ _id: ObjectID(id) });
+  console.log(likedUser)
+  if (likedUser.likedBy.includes(req.session.user)) {
+    await db
+      .collection("users")
+      .updateOne(
+        { _id: ObjectID(id) },
+        { $pull: { likedBy: req.session.user } }
+      );
+    res.sendStatus(201);
+  } else {
+    await db
+      .collection("users")
+      .updateOne(
+        { _id: ObjectID(id) },
+        { $push: { likedBy: req.session.user } }
+      );
+    res.sendStatus(200);
+  }
+}
+
 
 app.listen(port, () => console.log("Example app listening on port" + port));
