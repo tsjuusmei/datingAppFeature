@@ -1,3 +1,4 @@
+
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongo = require("mongodb");
@@ -5,6 +6,8 @@ const ObjectID = mongo.ObjectID;
 const session = require("express-session");
 const bcrypt = require('bcrypt')
 require("dotenv").config();
+
+
 
 const app = express();
 
@@ -28,6 +31,7 @@ mongo.MongoClient.connect(url, { useUnifiedTopology: true }, function (
 
 // THIS IS WHERE THE CODE FOR THE DATABASE ENDS
 
+
 app.use("/static", express.static("static"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
@@ -50,10 +54,12 @@ app.get("/results", results);
 app.get('/register', register)
 app.get("/filter", filters);
 app.get("/login", login);
+app.get("/profile", profile)
 
 app.post("/results", filter);
 app.post("/login", loginpost);
 app.post('/register', registerpost)
+app.post("/profile", profilepost)
 
 function home(req, res) {
   let { userId } = req.session;
@@ -87,6 +93,11 @@ function login(req, res) {
   res.render("login.ejs");
 }
 
+function profile(req, res){
+  // In this function we use the data from the current userId aka the session 
+ res.render('profile.ejs', {data:req.session.userId}) 
+}
+
 async function loginpost(req, res) {
 
   const user = await db.collection('users').findOne({email: req.body.email})
@@ -105,6 +116,23 @@ async function loginpost(req, res) {
     console.log(err)
   }
 }
+
+// In this function we make sure the user can update it's haircolor and this wil be changed in the database
+function profilepost(req,res){
+  db.collection('users').updateOne(
+         // First we find the userId aka the session and then we update the haircolor with the input from the user
+         {firstName: req.session.userId.firstName}, 
+         {$set: {hair: req.body.hair}})
+         
+         db.collection('users').findOne({firstName: req.session.userId.firstName}, done)
+         function done(err, data){
+             if (err){
+                 next(err)
+             }else {
+                 req.session.userId = data
+                 res.redirect('/results')
+             }}         
+ }
 
 function filter(req, res) {
   let sexualityFilter = req.body.sexuality;

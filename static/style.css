@@ -9,6 +9,7 @@ body {
     height: 100vh;
     font-family: 'Montserrat';
     letter-spacing: 1px;
+    background-color: #2945A0;
 }
 
 a {
@@ -37,6 +38,13 @@ ul {
     margin: 90px 0 0 40px;
     text-decoration: underline;
 }
+
+.normalmain{
+    background-color: #FFFFFD;
+    border-radius: 30px 30px 0px 0px;
+    min-height: 50rem;
+}
+
 
 /* Begin pagina */
 
@@ -261,4 +269,164 @@ footer a p {
     width: 15px;
     z-index: 1;
     margin: 0 15px 38px 0;
+}
+
+/* CSS FOR PROFILE */
+
+.profileinfo{
+    width: 9rem;
+    font-family: 'Montserrat';
+    color: #2945A0;
+}
+.profileinfo ul{
+    margin-top: 2rem;
+}
+.profileinfo ul li{
+    list-style-type: none;
+}
+
+#profileimg{
+    width: 10rem;
+    height: 13rem;
+    object-fit: cover;
+    border-radius: 14px;
+}
+
+#profile{
+    margin-top: 3rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.profilelabel{
+    font-family: 'Montserrat';
+    color: #53D0EC;
+    font-size: 1.3rem;
+    display: block;
+}
+
+.profileinput{
+    margin: 1rem 0rem 2.5rem 0rem;
+    border: none;
+    font-family: 'Montserrat';
+    background-color: #F4F4F4;
+    border-radius: 10px;
+    height: 2rem;
+    width: 15rem;
+    padding-left: 1rem;
+    display: block;
+}
+.profileinput::placeholder{
+    font-family: 'Montserrat';
+}
+
+.profilelegend{
+    font-size: 1.5rem;
+    font-family: 'Montserrat';
+    color:  #2945A0;
+    margin-bottom: 2rem;
+}
+
+.profilefieldset{
+    margin-top: 3rem;
+    /* height: 17rem; */
+    border: none;
+    display: flex;
+    flex-direction: column;
+}
+
+/* CSS FOR RESULTS */
+
+.results header {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+#filterbutton{
+    top: 1rem;
+    left: 1.5rem;
+    position: absolute;
+    width: 1.5rem;
+}
+
+#logo{
+    width: 3rem;
+    display: block;
+    margin: auto;
+    padding: 0.5rem 0rem 1rem 0rem;
+}
+
+#profilebutton{
+    top: 1rem;
+    right: 1.5rem;
+    position: absolute;
+    width: 1.5rem;
+}
+
+.maininhoud{
+    padding: 1.5rem 1.2rem 0rem 1.2rem;
+}
+
+h1{
+    font-family: 'Montserrat';
+    color:  #2945A0;
+    font-size: 1.9rem;
+}
+
+.person{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 2rem 0rem;
+    padding-bottom: 1rem;
+}
+
+#personimage{
+    width: 8rem;
+    height: 8rem;
+    object-fit: cover;
+    border-radius: 14px;
+    position: relative;
+    top: 0rem;
+    left: 0rem;
+}
+
+.info{
+    color: #2945A0;
+    margin-right: 4.5rem;
+}
+
+.info h2{
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+}
+
+.info section{
+    font-size: 0.8rem;
+}
+
+#visitedbutton{
+    width: 2.5rem;
+    padding: 0rem 1rem 0.2rem 0rem;
+}
+
+#likedbutton{
+    width: 2rem;
+}
+
+#likedbybutton{
+    width: 3rem;
+    position: relative;
+    left: 6rem ;
+    top: -2rem;
+}
+
+.test{
+    width: 5rem;
+}
+
+.titleoptions{
+    display: flex;
+    justify-content: space-between;
 }
