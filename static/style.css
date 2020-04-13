@@ -130,7 +130,7 @@ footer a p {
 }
 
 
-.login main form img {
+form img {
     position: absolute;
     bottom: 0;
     right: 0;
@@ -448,3 +448,47 @@ h1{
     display: flex;
     justify-content: space-between;
 }
+
+/* filterpage */
+
+.filterpage fieldset{
+    margin-top: 3rem;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    padding: 0rem;
+}
+
+.filterpage legend{
+    font-size: 1.5rem;
+    font-family: 'Montserrat';
+    color:  #2945A0;
+    margin-bottom: 2rem;
+}
+
+.filterpage label{
+    font-family: 'Montserrat';
+    font-size: 1.2rem;
+    color: #FFFFFD ;
+    background-color: #53D0EC;
+    padding: 1rem;
+    margin: 0rem 4rem 0rem 4rem;
+    border-radius: 14px;
+    width: 11rem;
+    text-align: center;
+    margin-top: 1rem;
+    box-shadow: 3px 3px 6px lightgray;
+}
+
+.buttonrandom{
+    background-color: #E5366D;
+    border: none;
+    border-radius: 15px;
+    padding: 1rem 1.5rem;
+    color: #FFFFFD;
+    font-family: 'Montserrat';
+    font-size: 1.5rem;
+    margin: 3rem 0rem 3rem;
+
+}
+
