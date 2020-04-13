@@ -7,7 +7,7 @@ _When I'm on a dating app, I want to be able to filter the people who appear in 
 ## Luvely
 Luvely is a dating app where you can filter on gender and sexuality, see who visited and liked you and like users back that have liked you!
 
-![Luvely](https://github.com/tsjuusmei/datingAppFeature/blob/master/documentatie/images/luvely.jpg)
+![Luvely](https://github.com/tsjuusmei/datingAppFeature/blob/master/documentatie/images/luvely.png)
 
 
 ## Getting started
