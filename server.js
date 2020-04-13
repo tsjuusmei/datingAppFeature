@@ -51,15 +51,16 @@ app.set("view engine", "ejs");
 
 app.get("/", home);
 app.get("/results", results);
-app.get('/register', register)
+app.get('/register', register);
 app.get("/filter", filters);
 app.get("/login", login);
-app.get("/profile", profile)
+app.get("/profile", profile);
+app.get("/likes", likes)
 
 app.post("/results", filter);
 app.post("/login", loginpost);
-app.post('/register', registerpost)
-app.post("/profile", profilepost)
+app.post('/register', registerpost);
+app.post("/profile", profilepost);
 
 function home(req, res) {
   let { userId } = req.session;
@@ -98,6 +99,17 @@ function profile(req, res){
  res.render('profile.ejs', {data:req.session.userId}) 
 }
 
+function likes(req, res) {
+  db.collection("users").find({}).toArray(done);
+  function done(err, data) {
+    if (err) {
+      next(err);
+    } else {
+      res.render("likes.ejs", { data: data });
+    }
+  }
+}
+
 async function loginpost(req, res) {
 
   const user = await db.collection('users').findOne({email: req.body.email})
@@ -107,7 +119,7 @@ async function loginpost(req, res) {
   }
   try {
     if (await bcrypt.compare(req.body.password, user.password)) {
-      const data = req.session.userId;
+      req.session.user = user
       res.redirect('/results')
     } else {
       res.send('Login failed')

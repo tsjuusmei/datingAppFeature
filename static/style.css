@@ -378,8 +378,7 @@ h1{
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    margin: 2rem 0rem;
-    padding-bottom: 1rem;
+    margin: 2rem 0rem 0rem;
 }
 
 #personimage{

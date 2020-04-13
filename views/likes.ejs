@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <%- include('./components/head') %>
-    <title>index</title>
+    <title>Likes</title>
 </head>
 
 <body class="results">
@@ -24,11 +24,13 @@
         <a href="/filter"><img id="likedbutton" src="../static/images/hartjeuitlijn.png" alt="liked pagina"></a>
       </section>
     </section>
+
     <article class="allpeople">
       <% for (var index = 0; index < data.length; index++) { %>
         <article class="person">
-          <section>
+          <section class="test">
             <img id="personimage" src="../static/images/<%= data[index].image%> " alt="Profile picture of <%= data[index].Firstname%>">
+            <img id="likedbybutton" src="../static/images/likedby.png" alt="likedby">
           </section>
           <section class="info">
           <h2> <%= data[index].firstName %> </h2>
