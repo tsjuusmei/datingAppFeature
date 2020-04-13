@@ -114,12 +114,12 @@ function loginpost(req, res) {
 }
 // In this function we make sure the user can update it's haircolor and this wil be changed in the database
 function profilepost(req,res){
-  db.collection('datingapp').updateOne(
+  db.collection('users').updateOne(
          // First we find the userId aka the session and then we update the haircolor with the input from the user
          {firstName: req.session.userId.firstName}, 
          {$set: {hair: req.body.hair}})
          
-         db.collection('datingapp').findOne({firstName: req.session.userId.firstName}, done)
+         db.collection('users').findOne({firstName: req.session.userId.firstName}, done)
          function done(err, data){
              if (err){
                  next(err)
