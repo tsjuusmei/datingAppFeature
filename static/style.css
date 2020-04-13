@@ -1,60 +1,354 @@
-*{
+/* Setting standards */
+
+* {
     margin: 0;
-    padding: 0;
-    
 }
-body{
+
+body {
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Montserrat';
+    letter-spacing: 1px;
     background-color: #2945A0;
+}
+
+a {
+    text-decoration: none;
+    color: #FFFFFD;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.logo {
+    width: 50px;
+    margin-top: 10px;
+}
+
+.title {
+    color: #FFFFFD;
+    margin: 70px 0 0 30px;
+    font-size: 38px;
+}
+
+.sidetitle {
+    color: #FFFFFD;
+    margin: 90px 0 0 40px;
+    text-decoration: underline;
 }
 
 .normalmain{
     background-color: #FFFFFD;
     border-radius: 30px 30px 0px 0px;
+    min-height: 50rem;
 }
 
-.onderknop{
+
+/* Begin pagina */
+
+.homeSecond{
+    background-image: url(../static/images/home.background.png);
+    background-size: cover;
+}
+
+.homeSecond h1 {
+    color: #FFFFFD;
+    width: 240px;
+    position: absolute;
+    right: 20px;
+    bottom: 170px;
+    font-size: 36px;
+}
+
+.homeSecond h1 span {
+    font-size: 62px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+
+footer img {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 170px;
+    z-index: -1;
+}
+
+footer a p {
+    font-size: 28px;
+    margin: 0 50px 35px 0;
+    color: #FFFFFD;
+    z-index: 1;
+}
+
+.pijltjerechts {
+    width: 15px;
+    z-index: 1;
+    margin: 0 30px 38px 0;
+}
+
+/* Login pagina */
+
+.login {
+    background-color: #2945A0;
+}
+
+.login header {
+    text-align: center;
+}
+
+.login main div {
+    display: flex;
+}
+
+.login main form {
+    display: flex;
+    flex-direction: column;
+    margin: 50px 30px 10px;
+}
+
+.login main form label {
+    margin: 25px 0 5px;
+}
+
+.login main form input {
+    margin-top: 5px;
+    height: 30px;
+    border: none;
+    border-radius: 8px;
+}
+
+.login main form label {
+    color: #53D0EC;
+    font-weight: bold;
+}
+
+.login main form img {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 170px;
+}
+
+.loginbutton {
+    position: absolute;
+    width: 180px;
+    bottom: 0px;
+    right: 0;
+    padding: 25px 0 35px;
+    margin-bottom: 35px;
+    background: none;
     font-family: 'Montserrat';
-    font-size: 2rem;
-    margin: 0rem 0rem 0rem 15rem;
-    text-decoration: none;
+    font-size: 28px;
+    letter-spacing: 1px;
     color: #FFFFFD;
 }
 
-.pijltjerechts{
-    width: 0.7rem;
-    margin-left: 0.5rem;
+.login main .pijltjerechts {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 15px;
+    z-index: 1;
+    margin: 0 30px 38px 0;
 }
 
-header{
+/* Register pagina */
+
+.register {
+    background-color: #2945A0;
+}
+
+.register header {
+    text-align: center;
+}
+
+.register main div {
+    display: flex;
+}
+
+.register main form {
+    display: flex;
+    flex-direction: column;
+    margin: 50px 50px 10px 30px;
+}
+
+.register main form > label {
+    margin: 25px 0 5px;
+    color: #53D0EC;
+    font-weight: bold;
+}
+
+.register main form > input {
+    margin-top: 5px;
+    height: 30px;
+    border: none;
+    border-radius: 8px;
+}
+
+#firstname, #lastname {
+    margin-right: 100px;
+}
+
+.register main > form div {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.labeltitle {
+    margin: 25px 0 5px;
+    color: #53D0EC;
+    font-weight: bold;
+}
+
+.label{
+    font-family: 'Montserrat';
+    font-size: 1.2rem;
+    color: #FFFFFD ;
+    background-color: #53D0EC;
+    padding: 5px;
+    margin: 2px;
+    border-radius: 10px;
+    width: 130px;
+    text-align: center;
+    margin-top: 12px;
+    box-shadow: 3px 3px 6px navy;  
+}
+
+.radio{
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.radio:checked + label{
+    border: 1px solid #2945A0;
+    background-color: #11A3CB;
+}
+
+.age {
+    width: 60px;
+}
+
+.hair {
+    width: 200px;
+}
+
+.register > main form img {
+    position: absolute;
+    bottom: -350px;
+    right: 0;
+    width: 170px;
+}
+
+.registerbutton {
+    position: absolute;
+    width: 175px;
+    bottom: -350px;
+    right: 0;
+    padding: 25px 0 35px;
+    margin-bottom: 35px;
+    background: none;
+    font-family: 'Montserrat';
+    font-size: 28px;
+    letter-spacing: 1px;
+    color: #FFFFFD;
+}
+
+.register main .pijltjerechts {
+    position: absolute;
+    bottom: -350px;
+    right: 0;
+    width: 15px;
+    z-index: 1;
+    margin: 0 15px 38px 0;
+}
+
+/* CSS FOR PROFILE */
+
+.profileinfo{
+    width: 9rem;
+    font-family: 'Montserrat';
+    color: #2945A0;
+}
+.profileinfo ul{
+    margin-top: 2rem;
+}
+.profileinfo ul li{
+    list-style-type: none;
+}
+
+#profileimg{
+    width: 10rem;
+    height: 13rem;
+    object-fit: cover;
+    border-radius: 14px;
+}
+
+#profile{
+    margin-top: 3rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.profilelabel{
+    font-family: 'Montserrat';
+    color: #53D0EC;
+    font-size: 1.3rem;
+    display: block;
+}
+
+.profileinput{
+    margin: 1rem 0rem 2.5rem 0rem;
+    border: none;
+    font-family: 'Montserrat';
+    background-color: #F4F4F4;
+    border-radius: 10px;
+    height: 2rem;
+    width: 15rem;
+    padding-left: 1rem;
+    display: block;
+}
+.profileinput::placeholder{
+    font-family: 'Montserrat';
+}
+
+.profilelegend{
+    font-size: 1.5rem;
+    font-family: 'Montserrat';
+    color:  #2945A0;
+    margin-bottom: 2rem;
+}
+
+.profilefieldset{
+    margin-top: 3rem;
+    /* height: 17rem; */
+    border: none;
+    display: flex;
+    flex-direction: column;
+}
+
+/* CSS FOR RESULTS */
+
+.results header {
     display: flex;
     justify-content: space-around;
+    width: 100%;
 }
 
-#backbutton{
-    width: 1.14rem;
-    height: 2rem;
-    margin: 0.7rem 0rem 0rem 1rem;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-color: #2945A0 ;
-    background-image: url(./images/pijltjelinks.png);
-    background-position: center center;
-    border: none;
-    /* position: absolute; */
-}
 #filterbutton{
-    width: 1.8rem;
-    height: 2rem;
-    margin: 0.8rem 1rem 0rem 0rem;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-color: #2945A0 ;
-    background-image: url(./images/filtertwee.png);
-    background-position: center center;
-    border: none;
-    
+    top: 1rem;
+    left: 1.5rem;
+    position: absolute;
+    width: 1.5rem;
 }
-
 
 #logo{
     width: 3rem;
@@ -63,188 +357,76 @@ header{
     padding: 0.5rem 0rem 1rem 0rem;
 }
 
-#elementone{
-    width: 6rem;
+#profilebutton{
+    top: 1rem;
+    right: 1.5rem;
+    position: absolute;
+    width: 1.5rem;
+}
+
+.maininhoud{
+    padding: 1.5rem 1.2rem 0rem 1.2rem;
 }
 
 h1{
     font-family: 'Montserrat';
     color:  #2945A0;
     font-size: 1.9rem;
-
-}
-
-fieldset{
-    margin-top: 3rem;
-    height: 30rem;
-    border: none;
-    display: flex;
-    flex-direction: column;
-
-}
-
-#form{
-    padding: 1.5rem 1.2rem 0rem 1.2rem;
-}
-
-legend{
-    font-size: 1.5rem;
-    font-family: 'Montserrat';
-    color:  #2945A0;
-    margin-bottom: 2rem;
-}
-
-.label{
-    font-family: 'Montserrat';
-    font-size: 1.2rem;
-    color: #FFFFFD ;
-    background-color: #53D0EC;
-    padding: 1rem;
-    margin: 0rem 4rem 0rem 4rem;
-    border-radius: 14px;
-    width: 11rem;
-    text-align: center;
-    margin-top: 1rem;
-    box-shadow: 3px 3px 6px lightgray;
-    
-}
-
-.agelabel{
-    font-size: 1rem;
-    font-family: 'Montserrat';
-    color:  #11A3CB;
-    margin-bottom: 2rem;
-}
-
- .radio{
-    opacity: 0;
-    width: 0;
-    height: 0;
-    
-}
-
-.radio:checked + label{
-    border: 1px solid #2945A0;
-    background-color: #11A3CB;
-}
-
-
-#titlefirstpage {
-    margin: 28rem 0rem 4.6rem 7rem;
-    font-family: 'Montserrat';
-    color: #FFFFFD;
-    font-size: 2.2rem;
-}
-
-
-h1 #luvely{
-    font-size: 3.8rem;
-    color: #FFFFFD;
-}
-
-#movies{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-#movies label{
-    width: 6rem;
-    margin: 1rem;
-}
-
-footer{
-    background-color: #FFFFFD ;
-    display: flex;
-    justify-content: flex-end;
-}
-
-#next{
-    font-family: 'Montserrat';
-    font-size: 1.8rem;
-    color: #FFFFFD;
-    background-image: url(../static/images/nextknopbg.png);
-    background-size: cover;
-    background-color: transparent;
-    border: none;
-    width: 12rem;
-    height: 6rem;
-
-}
-
-.submitButton{
-    background-color: #FFFFFD ;
-    display: flex;
-    justify-content: flex-end;
-}
-
-#next img{
-    width: 0.7rem;
-    padding-left: 0.6rem;
-}
-
-/* Dit is voor resultaten scherm */
-
-#mainresults{
-    /* height: 50rem; */
-    padding: 1.5rem;
 }
 
 .person{
-    position: relative;
-    width: 20.5rem;
-    height: 30rem;
-    color: #FFFFFD;
-    font-family: 'Montserrat' ;
-    padding-top: 2rem;
-    
-  }
-.person img{
-    width: 100%;
-    border-radius: 15px;
-    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 2rem 0rem;
+    padding-bottom: 1rem;
 }
 
+#personimage{
+    width: 8rem;
+    height: 8rem;
+    object-fit: cover;
+    border-radius: 14px;
+    position: relative;
+    top: 0rem;
+    left: 0rem;
+}
 
 .info{
-    position: absolute; 
-    top: 25.5rem; 
-    left: 1rem; 
-    width: 100%; 
-    
-    
-}
-
-.person h2{
-    font-size: 1.5rem;
-    text-decoration: underline;
-      
-   }
- 
-
-.basics{
-    display: flex;
-    flex-direction: row;
-    list-style-type: none;
-    
-}
-
-.basics li{
-    padding-right:0.5rem ;
-}
-
-.specific{
     color: #2945A0;
-    display: flex;
-    flex-direction: row;
-    list-style-type: none;
-    margin-top: 0.5rem;
-   
+    margin-right: 4.5rem;
 }
 
-.specific li{
-    padding: 0.5rem 1.5rem  ;
-    margin-right: 0.5rem;
-    background-color: rgba(255,255,253,.5);
-    border-radius: 7px;
+.info h2{
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+}
+
+.info section{
+    font-size: 0.8rem;
+}
+
+#visitedbutton{
+    width: 2.5rem;
+    padding: 0rem 1rem 0.2rem 0rem;
+}
+
+#likedbutton{
+    width: 2rem;
+}
+
+#likedbybutton{
+    width: 3rem;
+    position: relative;
+    left: 6rem ;
+    top: -2rem;
+}
+
+.test{
+    width: 5rem;
+}
+
+.titleoptions{
+    display: flex;
+    justify-content: space-between;
 }
