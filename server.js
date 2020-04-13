@@ -1,27 +1,20 @@
 
-<<<<<<< HEAD
-
-require('dotenv').config()
-=======
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongo = require("mongodb");
 const ObjectID = mongo.ObjectID;
 const session = require("express-session");
 const bcrypt = require('bcrypt')
+const multer = require('multer');
+const path = require('path');
+const fs = require('fs');
 require("dotenv").config();
->>>>>>> origin/develop
 
 
 
-<<<<<<< HEAD
-app.use('/static',express.static('static'))
-app.use(bodyParser.urlencoded({extended: true}))
-=======
 const app = express();
 
 const port = 3000;
->>>>>>> origin/develop
 
 const TWO_HOURS = 1000 * 60 * 60 * 2;
 
@@ -91,7 +84,7 @@ function results(req, res, next) {
   }
 }
 
-function register (req, res) {
+function register(req, res) {
   res.render('register.ejs')
 }
 
@@ -103,14 +96,57 @@ function login(req, res) {
   res.render("login.ejs");
 }
 
-function profile(req, res){
+function profile(req, res) {
   // In this function we use the data from the current userId aka the session 
- res.render('profile.ejs', {data:req.session.userId}) 
+  res.render('profile.ejs', { data: req.session.userId })
 }
+
+const storage = multer.diskStorage({
+  destination: function(req, file, cb){
+    cb(null, 'uploads')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
+  }
+})
+
+const upload = multer({
+  storage: storage,
+
+})
+
+//Configuring the image upload to the database
+app.post('/uploadImage', upload.single('myImage'), (req, res, next) => {
+  const img = fs.readFileSync(req.file.path)
+
+  const encode_image = img.toString('base64')
+
+  // Define a JSON Object for the image
+  const finalImg = {
+    contentType: req.file.mimetype,
+    path: req.file.path,
+    image: new Buffer(encode_image, 'base64')
+  }
+
+  //insert the image to the database
+  db.collection('users').insertOne(finalImg, (err, result) => {
+    console.log(result)
+
+    if(err) return console.log(err)
+
+    console.log('Saved to database')
+
+    res.contentType(finalImg.contentType)
+
+    res.redirect('login')
+  })
+
+  
+})
 
 async function loginpost(req, res) {
 
-  const user = await db.collection('users').findOne({email: req.body.email})
+  const user = await db.collection('users').findOne({ email: req.body.email })
 
   if (user == null) {
     return res.status(400).send('Cannot find user')
@@ -127,25 +163,23 @@ async function loginpost(req, res) {
   }
 }
 
-<<<<<<< HEAD
-app.use(limiter);
-=======
 // In this function we make sure the user can update it's haircolor and this wil be changed in the database
-function profilepost(req,res){
+function profilepost(req, res) {
   db.collection('users').updateOne(
-         // First we find the userId aka the session and then we update the haircolor with the input from the user
-         {firstName: req.session.userId.firstName}, 
-         {$set: {hair: req.body.hair}})
-         
-         db.collection('users').findOne({firstName: req.session.userId.firstName}, done)
-         function done(err, data){
-             if (err){
-                 next(err)
-             }else {
-                 req.session.userId = data
-                 res.redirect('/results')
-             }}         
- }
+    // First we find the userId aka the session and then we update the haircolor with the input from the user
+    { firstName: req.session.userId.firstName },
+    { $set: { hair: req.body.hair } })
+
+  db.collection('users').findOne({ firstName: req.session.userId.firstName }, done)
+  function done(err, data) {
+    if (err) {
+      next(err)
+    } else {
+      req.session.userId = data
+      res.redirect('/results')
+    }
+  }
+}
 
 function filter(req, res) {
   let sexualityFilter = req.body.sexuality;
@@ -176,19 +210,18 @@ async function registerpost(req, res, next) {
     hair: req.body.hair,
     gender: req.body.gender,
     sexuality: req.body.sexuality,
-    filter: {gender: "", sexuality: ""},
+    filter: { gender: "", sexuality: "" },
     visitedBy: [""],
     likedBy: [""]
-}, done)
+  }, done)
 
   function done(err, data) {
-      if (err) {
-          next(err)
-      } else {
-          res.redirect('login')
-      }
+    if (err) {
+      next(err)
+    } else {
+      res.redirect('login')
+    }
   }
 }
->>>>>>> origin/develop
 
 app.listen(port, () => console.log("Example app listening on port" + port));

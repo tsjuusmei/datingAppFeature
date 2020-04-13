@@ -66,13 +66,14 @@
                 <input class='radio' type="radio" id="bi" name="sexuality" value="bi">
                 <label for="bi" class="label">Bisexual</label>
             </div>
-
-            <label for="file">
-                <input type="file">
-            </label>
-
             <img src="../static/images/footer.knop.png" alt="Footer knop">
             <input class='registerbutton' type="submit" value="register">
+        </form>
+        <form action="/uploadImage" enctype="multipart/form-data" method="POST">
+            <label for="file">
+                <input type="file" name="myImage" accept="image/*">
+            </label>
+            <input type="submit" value="upload photo">
         </form>
 
         <img class="pijltjerechts" src="../static/images/pijltjerechts.png" alt="">

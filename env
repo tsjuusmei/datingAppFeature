@@ -1,0 +1,4 @@
+DB_URL=mongodb+srv://asd123:asd123@datingappcluster-mmsmc.mongodb.net/test?retryWrites=true&w=majority
+DB_NAME=luvely
+SESSION_SECRET=secretsession
+SESSION_NAME=sid

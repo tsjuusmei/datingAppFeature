@@ -31,18 +31,9 @@
     "dotenv": "^8.2.0",
     "ejs": "^3.0.1",
     "express": "^4.17.1",
-<<<<<<< HEAD
-    "express-rate-limit": "^5.1.1",
-    "helmet": "^3.22.0",
-    "mongodb": "^3.5.5",
-    "multer": "^1.4.2",
-    "rate-limit-redis": "^1.7.0",
-    "slug": "^2.1.1"
-=======
     "express-session": "^1.17.0",
     "mongodb": "^3.5.5",
     "multer": "^1.4.2"
->>>>>>> origin/develop
   },
   "devDependencies": {
     "nodemon": "^2.0.2"
