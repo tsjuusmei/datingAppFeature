@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const mongo = require("mongodb");
 const ObjectID = mongo.ObjectID;
 const session = require("express-session");
+const bcrypt = require('bcrypt')
 require("dotenv").config();
 
 
@@ -97,21 +98,25 @@ function profile(req, res){
  res.render('profile.ejs', {data:req.session.userId}) 
 }
 
-function loginpost(req, res) {
-  const email = req.body.email;
-  const password = req.body.password;
-  if (email && password){
-    db.collection('users').findOne({email: email, password: password}, done)
-    function done(err, data){
-        if (err){
-            next(err)
-        }else {
-            req.session.userId = data
-            res.redirect('/results')
-      }
-    }  
-  } 
+async function loginpost(req, res) {
+
+  const user = await db.collection('users').findOne({email: req.body.email})
+
+  if (user == null) {
+    return res.status(400).send('Cannot find user')
+  }
+  try {
+    if (await bcrypt.compare(req.body.password, user.password)) {
+      const data = req.session.userId;
+      res.redirect('/results')
+    } else {
+      res.send('Login failed')
+    }
+  } catch (err) {
+    console.log(err)
+  }
 }
+
 // In this function we make sure the user can update it's haircolor and this wil be changed in the database
 function profilepost(req,res){
   db.collection('users').updateOne(
@@ -145,16 +150,23 @@ function filter(req, res) {
   }
 }
 
-function registerpost(req, res, next) {
+async function registerpost(req, res, next) {
+
+  const hashedPassword = await bcrypt.hash(req.body.password, 10)
+
   db.collection('users').insertOne({
-      firstname: req.body.firstname,
-      lastname: req.body.lastname,
-      email: req.body.email,
-      password: req.body.password,
-      age: req.body.age,
-      gender: req.body.gender,
-      sexuality: req.body.sexuality
-  }, done)
+    firstname: req.body.firstname,
+    lastname: req.body.lastname,
+    email: req.body.email,
+    password: hashedPassword,
+    age: req.body.age,
+    hair: req.body.hair,
+    gender: req.body.gender,
+    sexuality: req.body.sexuality,
+    filter: {gender: "", sexuality: ""},
+    visitedBy: [""],
+    likedBy: [""]
+}, done)
 
   function done(err, data) {
       if (err) {

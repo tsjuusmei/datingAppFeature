@@ -233,9 +233,17 @@ footer a p {
     background-color: #11A3CB;
 }
 
+.age {
+    width: 60px;
+}
+
+.hair {
+    width: 200px;
+}
+
 .register > main form img {
     position: absolute;
-    bottom: -160px;
+    bottom: -350px;
     right: 0;
     width: 170px;
 }
@@ -243,7 +251,7 @@ footer a p {
 .registerbutton {
     position: absolute;
     width: 175px;
-    bottom: -160px;
+    bottom: -350px;
     right: 0;
     padding: 25px 0 35px;
     margin-bottom: 35px;
@@ -256,7 +264,7 @@ footer a p {
 
 .register main .pijltjerechts {
     position: absolute;
-    bottom: -160px;
+    bottom: -350px;
     right: 0;
     width: 15px;
     z-index: 1;
