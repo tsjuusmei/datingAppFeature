@@ -188,7 +188,7 @@ async function registerpost(req, res, next) {
     hair: req.body.hair,
     gender: req.body.gender,
     sexuality: req.body.sexuality,
-    filter: { gender: "", sexuality: "" },
+    filter: {gender: "", sexuality: ""},
     visitedBy: [""],
     likedBy: [""]
   }, done)
