@@ -1,6 +1,16 @@
+
 # Luvely
-Luvely is a dating app where users can create an account, filter through matches and see which people looked at their profile or liked their profile.
-![Luvely](https://github.com/annaboomsma/datingAppFeature/blob/master/documentatie/images/luvely.png)
+Luvely is a dating app where users can create an account, filter on gender and sexuality, see who visited and liked you and like users back that have liked you!
+![Luvely](https://github.com/annaboomsma/datingAppFeature/blob/master/documentatie/images/luvely.png)to collaborate to add other functions and make a complete functioning dating app. You can find my progress in my [wiki](https://github.com/annaboomsma/datingAppFeature/wiki)
+
+## Jobstories
+_When I'm on a dating app, I want to be able to filter the people who appear in my suggestions, so I can find the one. (Anna)_ 
+
+_When I'm on a dating app, I want to make a profile, so other users know what my interests are. (Inju)_
+
+_When I'm on a dating website, I want to be able to check how many visitors and/or like I've had, so I can know if anyone is interested in me. (Guus)_
+
+![Luvely](https://github.com/tsjuusmei/datingAppFeature/blob/master/documentatie/images/luvely.png)
 
 ## Getting started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
@@ -31,6 +41,41 @@ To setup the database you'll need to create a new cluster. After you've created 
 
 Clicking on connect will give you 3 options. Choose for option 2: _Connect your application_. Copy the string and paste it in your code. It will probably look something like this: **mongodb+srv://[username]:[password]@moa-lfz7p.mongodb.net/test?retryWrites=true&w=majority**
 
+This is the structure of the MongoDB Atlas database:
+
+```
+_id: Object ID("")
+firstName: ""
+lastName: ""
+email: ""
+password: ""
+age: null
+hair: ""
+gender: ""
+sexuality: ""
+image: ""
+filter: Object
+   gender: ""
+   sexuality: ""
+likedby: Array
+   0: ObjectIdOfUser
+   1: ObjectIdOfUser
+visitedBy: Array
+   0: ObjectIdOfUser
+   1: ObjectIdOfUser
+   2: ObjectIdOfUser
+   3: ObjectIdOfUser
+}
+```
+
+It should look like this in MongoDB Compass
+
+![Database](https://github.com/tsjuusmei/datingAppFeature/blob/master/documentatie/images/database.png)
+
+The available `filters` for `gender` are `"Men"` and `"Women"`. 
+
+The available `filters` for `sexuality` are `"Gay"`, `"Straight"` and `"Bi-sexual"`
+
 ### Test if it works
 To test if the application works you can run the following command. If the applicaton works it will say `Example app listening on port3000`
 ```cmd
@@ -55,3 +100,4 @@ This is the structure of the database:
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/tsjuusmei/datingAppFeature/blob/master/LICENSE) file for details
 
+If the server is running go to [localhost:3000](http://localhost:3000/) in your browser.
