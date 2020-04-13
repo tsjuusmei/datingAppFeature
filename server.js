@@ -5,7 +5,7 @@ const app = express()
 const port = 3000
 const path = require('path')
 const mongo = require('mongodb')
-const helmet = require('helmet')
+
 
 require('dotenv').config()
 
@@ -24,7 +24,6 @@ mongo.MongoClient.connect(url, { useUnifiedTopology: true }, function(err, clien
 
 // THIS IS WHERE THE CODE FOR THE DATABASE ENDS
 
-app.use(helmet())
 app.use('/static',express.static('static'))
 app.use(bodyParser.urlencoded({extended: true}))
 
@@ -82,6 +81,6 @@ function people(req, res, next){
 // function remove
 
 
-
+app.use(limiter);
 
 app.listen(port,() => console.log('Example app listening on port' + port))
