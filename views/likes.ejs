@@ -30,7 +30,7 @@
         <article class="person">
           <section class="test">
             <img id="personimage" src="../static/images/<%= likes[i].image%> " alt="Profile picture of <%= likes[i].firstName%>">
-            <img data-id="<%= likes[i]._id %>" class="likedbybutton" src= "<%= likes[i].likedBy.includes(user._id.toString()) ? '../static/images/likedBy.png' : '../static/images/likedBy.png' %> "  alt="">
+            <img data-id="<%= likes[i]._id %>" class="likedbybutton" src= "<%= likes[i].likedBy.includes(user._id.toString()) ? '../static/images/likedBy.png' : '../static/images/notLikedBy.png' %> "  alt="">
           </section>
           <section class="info">
           <h2> <%= likes[i].firstName %> </h2>

@@ -1,4 +1,3 @@
-
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongo = require("mongodb");
@@ -6,8 +5,6 @@ const ObjectID = mongo.ObjectID;
 const session = require("express-session");
 const bcrypt = require('bcrypt')
 require("dotenv").config();
-
-
 
 const app = express();
 
@@ -34,6 +31,7 @@ mongo.MongoClient.connect(url, { useUnifiedTopology: true }, function (
 
 app.use("/static", express.static("static"));
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(
   session({
     name: process.env.SESSION_NAME,
@@ -61,7 +59,7 @@ app.post("/results", filter);
 app.post("/login", loginpost);
 app.post("/register", registerpost);
 app.post("/profile", profilepost);
-app.post("/like", likepost)
+app.post("/like", likepost);
 
 function home(req, res) {
   let { userId } = req.session;
@@ -96,13 +94,13 @@ function login(req, res) {
 }
 
 function profile(req, res) {
-  // In this function we use the data from the current userId aka the session 
-  res.render('profile.ejs', { data: req.session.userId })
+  // In this function we use the data from the current user aka the session 
+  res.render('profile.ejs', { data: req.session.user })
 }
 
 async function likes(req, res) {
-  const promises = []; // create an array to store promises
   const user = req.session.user;
+  const promises = []; // create an array to store promises
   user.likedBy.forEach((likerId) => {
     // make a foreach for each like in likedBy array in db
     promises.push(
@@ -135,16 +133,16 @@ async function loginpost(req, res) {
 // In this function we make sure the user can update it's haircolor and this wil be changed in the database
 function profilepost(req, res) {
   db.collection('users').updateOne(
-    // First we find the userId aka the session and then we update the haircolor with the input from the user
-    { firstName: req.session.userId.firstName },
+    // First we find the user aka the session and then we update the haircolor with the input from the user
+    { firstName: req.session.user.firstName },
     { $set: { hair: req.body.hair } })
 
-  db.collection('users').findOne({ firstName: req.session.userId.firstName }, done)
+  db.collection('users').findOne({ firstName: req.session.user.firstName }, done)
   function done(err, data) {
     if (err) {
       next(err)
     } else {
-      req.session.userId = data
+      req.session.user = data
       res.redirect('/results')
     }
   }
@@ -195,17 +193,15 @@ async function registerpost(req, res, next) {
 
 async function likepost(req, res) {
   const id = req.body.id;
-  console.log(id)
   const likedUser = await db
     .collection("users")
-    .findOne({ _id: ObjectID(id) });
-  console.log(likedUser)
-  if (likedUser.likedBy.includes(req.session.user)) {
+    .findOne({ _id: ObjectID(id) }); 
+  if (likedUser.likedBy.includes(req.session.user._id)) {
     await db
       .collection("users")
       .updateOne(
         { _id: ObjectID(id) },
-        { $pull: { likedBy: req.session.user } }
+        { $pull: { likedBy: req.session.user._id } }
       );
     res.sendStatus(201);
   } else {
@@ -213,7 +209,7 @@ async function likepost(req, res) {
       .collection("users")
       .updateOne(
         { _id: ObjectID(id) },
-        { $push: { likedBy: req.session.user } }
+        { $push: { likedBy: req.session.user._id } }
       );
     res.sendStatus(200);
   }
