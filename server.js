@@ -74,14 +74,21 @@ function home(req, res) {
 }
 
 function results(req, res, next) {
-  db.collection("users").find({}).toArray(done);
-  function done(err, data) {
-    if (err) {
-      next(err);
-    } else {
-      res.render("visitors.ejs", { data: data });
+  db.collection('users').find({
+    // This is where we find the userId and the gender & sexuality they want to filter on and we filter the rest of the people with the .find
+    $and: [  
+    {firstName:{$ne: req.session.user.firstName}},
+    {gender: req.session.user.filter['gender']}, 
+    {sexuality: req.session.user.filter['sexuality']}
+]}).toArray(done)
+    function done(err, data){
+        if (err){
+            next(err)
+        } else {
+            // 
+            res.render('visitors.ejs', {data: data})
+        }
     }
-  }
 }
 
 function register(req, res) {
@@ -136,13 +143,16 @@ async function loginpost(req, res) {
 }
 
 // In this function we make sure the user can update it's haircolor and this wil be changed in the database
-function profilepost(req, res) {
+
+async function profilepost(req,res){
+  const hashedPassword = await bcrypt.hash(req.body.password, 10)
+
   db.collection('users').updateOne(
          // First we find the userId aka the session and then we update the haircolor with the input from the user
          {firstName: req.session.user.firstName}, 
          {$set: {
           email: req.body.email,
-          password: req.body.password,
+          password: hashedPassword,
           age: req.body.age,
           hair: req.body.hair,
           gender: req.body.gender,
@@ -160,19 +170,19 @@ function profilepost(req, res) {
  }
 
 function filter(req, res) {
-  let sexualityFilter = req.body.sexuality;
-  let genderFilter = req.body.gender;
-
-  db.collection("users")
-    .find({ gender: genderFilter, sexuality: sexualityFilter })
-    .toArray(done);
-  function done(err, data) {
-    if (err) {
-      next(err);
-    } else {
-      res.render("visitors.ejs", { data: data });
-    }
-  }
+  db.collection('users').updateOne(
+    {firstName: req.session.user.firstName}, 
+    {$set: {filter: req.body}})
+// This is where we find the userId aka the session so we update the preferences for the right user     
+db.collection('users').findOne({firstName: req.session.user.firstName}, done)
+function done(err, data){
+    if (err){
+        next(err)
+    }else {
+        // This is where we redirect the user to the list of people with the filters on
+        req.session.user = data
+        res.redirect('/results')
+    }} 
 }
 
 async function registerpost(req, res, next) {
