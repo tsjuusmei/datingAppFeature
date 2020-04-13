@@ -1,17 +1,22 @@
 
+const helmet = require('helmet')
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongo = require("mongodb");
 const ObjectID = mongo.ObjectID;
 const session = require("express-session");
 const bcrypt = require('bcrypt')
+
 require("dotenv").config();
 
-
+app.use(helmet())
+app.use('/static',express.static('static'))
+app.use(bodyParser.urlencoded({extended: true}))
 
 const app = express();
 
 const port = 3000;
+
 
 const TWO_HOURS = 1000 * 60 * 60 * 2;
 
