@@ -34,7 +34,7 @@ To test if the application works add this to your terminal:
 
 `npm run nodemon`
 
-If the server is running go to [localhost3000](http://localhost:3000/)
+If the server is running go to [localhost:3000](http://localhost:3000/) in your browser.
 
 ## Database 
 This is the structure of the mongodb atlas database:
