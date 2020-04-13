@@ -60,13 +60,17 @@ app.post("/results", filter);
 app.post("/login", loginpost);
 app.post('/register', registerpost)
 app.post("/profile", profilepost)
+app.post('/logout', logoutpost)
 
 function home(req, res) {
   let { userId } = req.session;
-  if ((userId = null)) {
+  if (!userId) {
     res.render("home.ejs");
+    console.log(req.session);
   } else {
-    res.render("homeSecond.ejs");
+    res.redirect('/results');
+    console.log(req.session);
+    
   }
 }
 
@@ -95,8 +99,11 @@ function login(req, res) {
 
 function profile(req, res){
   // In this function we use the data from the current userId aka the session 
- res.render('profile.ejs', {data:req.session.userId}) 
+  res.render('profile.ejs', {data:req.session.user}) 
+
 }
+
+
 
 async function loginpost(req, res) {
 
@@ -107,7 +114,7 @@ async function loginpost(req, res) {
   }
   try {
     if (await bcrypt.compare(req.body.password, user.password)) {
-      const data = req.session.userId;
+      req.session.user = user
       res.redirect('/results')
     } else {
       res.send('Login failed')
@@ -121,10 +128,19 @@ async function loginpost(req, res) {
 function profilepost(req,res){
   db.collection('users').updateOne(
          // First we find the userId aka the session and then we update the haircolor with the input from the user
-         {firstName: req.session.userId.firstName}, 
-         {$set: {hair: req.body.hair}})
+         {firstName: req.session.user.firstName}, 
+         {$set: {
+          email: req.body.email,
+          password: req.body.password,
+          age: req.body.age,
+          hair: req.body.hair,
+          gender: req.body.gender,
+          sexuality: req.body.sexuality
+
+           
+        }})
          
-         db.collection('users').findOne({firstName: req.session.userId.firstName}, done)
+         db.collection('users').findOne({firstName: req.session.user.firstName}, done)
          function done(err, data){
              if (err){
                  next(err)
@@ -175,6 +191,19 @@ async function registerpost(req, res, next) {
           res.redirect('login')
       }
   }
+}
+
+function logoutpost(req,res){
+  // This is where we destroy the session
+  req.session.destroy(err => {
+      if(err){
+          return res.redirect('/results')
+      } else {
+          // This is where we clear the cookie and we redirect the user to the homepage
+          res.clearCookie(process.env.SESS_NAME)
+          res.redirect('/')
+      }
+  })
 }
 
 app.listen(port, () => console.log("Example app listening on port" + port));
