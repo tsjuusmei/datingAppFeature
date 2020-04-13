@@ -8,10 +8,6 @@ const bcrypt = require('bcrypt')
 
 require("dotenv").config();
 
-app.use(helmet())
-app.use('/static',express.static('static'))
-app.use(bodyParser.urlencoded({extended: true}))
-
 const app = express();
 
 const port = 3000;
@@ -34,6 +30,7 @@ mongo.MongoClient.connect(url, { useUnifiedTopology: true }, function (
 
 // THIS IS WHERE THE CODE FOR THE DATABASE ENDS
 
+app.use(helmet())
 app.use("/static", express.static("static"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -71,11 +68,8 @@ function home(req, res) {
   let { userId } = req.session;
   if (!userId) {
     res.render("home.ejs");
-    console.log(req.session);
   } else {
-    res.redirect('/results');
-    console.log(req.session);
-    
+    res.redirect('/results');    
   }
 }
 
@@ -118,6 +112,7 @@ async function likes(req, res) {
     ); // For each like in the likedBy array, get the corresponding user from the database and push it as a promise to the promises[]
   });
   const likes = await Promise.all(promises);
+  console.log(likes)
   res.render('likes', { likes: likes, user })
 }
 
