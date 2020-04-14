@@ -7,7 +7,7 @@ _When I'm on a dating app, I want to be able to filter the people who appear in 
 ## Luvely
 Luvely is a dating app where you can filter the people in our system. You can filter on gender and sexuality.
 
-![Luvely](https://github.com/annaboomsma/datingAppFeature/blob/master/documentatie/images/luvely.png)
+![Luvely](https://github.com/tsjuusmei/datingAppFeature/blob/develop/documentatie/images/luvely.png?raw=true)
 
 
 ## Getting started
@@ -39,4 +39,4 @@ If the server is running go to [localhost3000](http://localhost:3000/)
 ## Database 
 This is the structure of the mongodb atlas database:
 
-![Database](https://github.com/annaboomsma/datingAppFeature/blob/master/documentatie/images/Database.png)
+![Database](https://github.com/tsjuusmei/datingAppFeature/blob/develop/documentatie/images/database.png?raw=true)
