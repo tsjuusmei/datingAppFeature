@@ -1,7 +1,7 @@
 
 # Luvely
 Luvely is a dating app where users can create an account, filter on gender and sexuality, see who visited and liked you and like users back that have liked you!
-![Luvely](https://github.com/annaboomsma/datingAppFeature/blob/master/documentatie/images/luvely.png)
+![Luvely](https://github.com/tsjuusmei/datingAppFeature/blob/develop/documentatie/images/luvely.png?raw=true)
 
 ## Jobstories
 _When I'm on a dating app, I want to be able to filter the people who appear in my suggestions, so I can find the one. (Anna)_ 
