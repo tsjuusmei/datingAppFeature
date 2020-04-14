@@ -351,6 +351,11 @@ form img {
     border: none;
 }
 
+#backbutton{
+    height: 1.7rem;
+    width: 1rem;
+}
+
 
 
 /* CSS FOR RESULTS */
@@ -361,7 +366,7 @@ form img {
     width: 100%;
 }
 
-#filterbutton{
+.filterbutton{
     top: 1rem;
     left: 1.5rem;
     position: absolute;
