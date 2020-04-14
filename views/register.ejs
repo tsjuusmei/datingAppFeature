@@ -12,16 +12,16 @@
     <header>
 
         <img class="logo" src="../static/images/logo.png" alt="logo luvely">
-    
+
     </header>
 
     <main>
         <div>
-        <h1 class="title">Register</h1>
-        <p class="sidetitle"><a href="/login">Login</a></p> 
+            <h1 class="title">Register</h1>
+            <p class="sidetitle"><a href="/login">Login</a></p>
         </div>
 
-        <form method="POST" action="/register">
+        <form method="POST" action="/register" enctype="multipart/form-data">
 
             <label for="firstname">First name:</label>
             <input type="text" name="firstname" id="firstname" required>
@@ -47,8 +47,8 @@
                 <input class='radio' type="radio" id="man" name="gender" value="man">
                 <label for="man" class="label">Man</label>
 
-                <input class='radio' type="radio" id="female" name="gender" value="female">
-                <label for="female" class="label">Female</label>
+                <input class='radio' type="radio" id="woman" name="gender" value="woman">
+                <label for="woman" class="label">Woman</label>
 
                 <input class='radio' type="radio" id="other" name="gender" value="other">
                 <label for="other" class="label">Other</label>
@@ -66,8 +66,7 @@
                 <input class='radio' type="radio" id="bi" name="sexuality" value="bi">
                 <label for="bi" class="label">Bisexual</label>
             </div>
-
-            <img src="../static/images/footer-knop.png" alt="Footer knop">
+            <img src="../static/images/footer.knop.png" alt="Footer knop">
             <input class='registerbutton' type="submit" value="register">
         </form>
 

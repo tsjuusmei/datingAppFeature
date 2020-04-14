@@ -5,10 +5,18 @@ const mongo = require("mongodb");
 const ObjectID = mongo.ObjectID;
 const session = require("express-session");
 const bcrypt = require('bcrypt')
+const rateLimit = require('express-rate-limit')
 
 require("dotenv").config();
 
 const app = express();
+
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 20, // limit each IP to 20 requests per windowMs
+  message: 'Too many requests sent from this IP, please try again after 15 minutes'
+});
+app.use(limiter);
 
 const port = 3000;
 
