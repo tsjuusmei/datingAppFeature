@@ -4,7 +4,7 @@
 
 <head>
     <%- include('./components/head') %>
-    <title>register</title>
+    <title>Register</title>
 </head>
 
 <body class="register">
@@ -21,7 +21,7 @@
             <p class="sidetitle"><a href="/login">Login</a></p>
         </div>
 
-        <form method="POST" action="/register">
+        <form method="POST" action="/register" enctype="multipart/form-data">
 
             <label for="firstname">First name:</label>
             <input type="text" name="firstname" id="firstname" required>
@@ -66,14 +66,11 @@
                 <input class='radio' type="radio" id="bi" name="sexuality" value="bi">
                 <label for="bi" class="label">Bisexual</label>
             </div>
-            <img src="../static/images/footer.knop.png" alt="Footer knop">
-            <input class='registerbutton' type="submit" value="register">
-        </form>
-        <form action="/uploadImage" enctype="multipart/form-data" method="POST">
             <label for="file">
                 <input type="file" name="myImage" accept="image/*">
             </label>
-            <input type="submit" value="upload photo">
+            <img src="../static/images/footer.knop.png" alt="Footer knop">
+            <input class='registerbutton' type="submit" value="register">
         </form>
 
         <img class="pijltjerechts" src="../static/images/pijltjerechts.png" alt="">
