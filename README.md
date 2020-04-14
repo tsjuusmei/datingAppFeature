@@ -8,6 +8,7 @@ _When I'm on a dating app, I want to be able to filter the people who appear in 
 
 _When I'm on a dating app, I want to make a profile, so other users know what my interests are. (Inju)_
 
+
 _When I'm on a dating website, I want to be able to check how many visitors and/or like I've had, so I can know if anyone is interested in me. (Guus)_
 
 ## Getting started
@@ -87,3 +88,4 @@ To test if you've correctly connected to the database you can go to the [registe
 This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/tsjuusmei/datingAppFeature/blob/master/LICENSE) file for details
 
 If the server is running go to [localhost:3000](http://localhost:3000/) in your browser.
+
