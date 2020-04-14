@@ -243,7 +243,7 @@ form img {
 
 .register > main form img {
     position: absolute;
-    bottom: -550px;
+    bottom: -450px;
     right: 0;
     width: 170px;
 }
@@ -251,7 +251,7 @@ form img {
 .registerbutton {
     position: absolute;
     width: 175px;
-    bottom: -550px;
+    bottom: -450px;
     right: 0;
     padding: 25px 0 35px;
     margin-bottom: 35px;
@@ -264,7 +264,7 @@ form img {
 
 .register main .pijltjerechts {
     position: absolute;
-    bottom: -550px;
+    bottom: -450px;
     right: 0;
     width: 15px;
     z-index: 1;
