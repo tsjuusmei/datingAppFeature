@@ -5,10 +5,17 @@ const mongo = require("mongodb");
 const ObjectID = mongo.ObjectID;
 const session = require("express-session");
 const bcrypt = require('bcrypt')
+const rateLimit = require('express-rate-limit')
 
 require("dotenv").config();
 
 const app = express();
+
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 5, // limit each IP to 5 requests per windowMs
+  message: 'Too many images uploaded from this IP, please try again after 15 minutes'
+});
 
 const port = 3000;
 
@@ -34,6 +41,7 @@ app.use(helmet())
 app.use("/static", express.static("static"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(limiter);
 app.use(
   session({
     name: process.env.SESSION_NAME,
