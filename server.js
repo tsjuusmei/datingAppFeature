@@ -5,7 +5,7 @@ const mongo = require("mongodb");
 const ObjectID = mongo.ObjectID;
 const session = require("express-session");
 const bcrypt = require("bcrypt");
-// const rateLimit = require("express-rate-limit");
+const rateLimit = require("express-rate-limit");
 const multer = require("multer");
 const fs = require("fs");
 const path = require("path");
@@ -29,12 +29,12 @@ const upload = multer({
   storage: storage,
 });
 
-// const limiter = rateLimit({
-//   windowMs: 15 * 60 * 1000, // 15 minutes
-//   max: 300, // limit each IP to 300 requests per windowMs
-//   message:
-//     "Too many requests sent from this IP, please try again after 15 minutes",
-// });
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 300, // limit each IP to 300 requests per windowMs
+  message:
+    "Too many requests sent from this IP, please try again after 15 minutes",
+});
 
 const port = process.env.PORT || 3000;
 
@@ -57,7 +57,7 @@ mongo.MongoClient.connect(url, { useUnifiedTopology: true }, function (
 // THIS IS WHERE THE CODE FOR THE DATABASE ENDS
 
 app.use(helmet());
-// app.use(limiter);
+app.use(limiter);
 app.use("/static", express.static("static"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
