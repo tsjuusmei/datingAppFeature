@@ -13,10 +13,9 @@ const app = express();
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 20, // limit each IP to 20 requests per windowMs
+  max: 300, // limit each IP to 20 requests per windowMs
   message: 'Too many requests sent from this IP, please try again after 15 minutes'
 });
-app.use(limiter);
 
 const port = 3000;
 
@@ -39,6 +38,7 @@ mongo.MongoClient.connect(url, { useUnifiedTopology: true }, function (
 // THIS IS WHERE THE CODE FOR THE DATABASE ENDS
 
 app.use(helmet())
+app.use(limiter);
 app.use("/static", express.static("static"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
