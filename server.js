@@ -13,9 +13,10 @@ const app = express();
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 5, // limit each IP to 5 requests per windowMs
-  message: 'Too many images uploaded from this IP, please try again after 15 minutes'
+  max: 20, // limit each IP to 20 requests per windowMs
+  message: 'Too many requests sent from this IP, please try again after 15 minutes'
 });
+app.use(limiter);
 
 const port = 3000;
 
@@ -41,7 +42,6 @@ app.use(helmet())
 app.use("/static", express.static("static"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(limiter);
 app.use(
   session({
     name: process.env.SESSION_NAME,
