@@ -202,13 +202,13 @@ async function profilepost(req, res) {
   }
 }
 
-function filter(req, res) {
-  db.collection("users").updateOne(
+async function filter(req, res) {
+  await db.collection("users").updateOne(
     { firstName: req.session.user.firstName },
     { $set: { filter: req.body } }
   );
   // This is where we find the userId aka the session so we update the preferences for the right user
-  db.collection("users").findOne(
+  await db.collection("users").findOne(
     { firstName: req.session.user.firstName },
     done
   );
