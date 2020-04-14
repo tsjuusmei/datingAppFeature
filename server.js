@@ -115,7 +115,6 @@ function results(req, res, next) {
     if (err) {
       next(err);
     } else {
-      //
       res.render("visitors.ejs", { data: data });
     }
   }
@@ -197,7 +196,7 @@ async function profilepost(req, res) {
     if (err) {
       next(err);
     } else {
-      req.session.userId = data;
+      req.session.user = data;
       res.redirect("/results");
     }
   }
