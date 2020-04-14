@@ -1,0 +1,45 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <%- include('./components/head') %>
+    <title>Visitors</title>
+</head>
+
+<body class="results">
+  <header>
+    <a  href="/filter"><img class="filterbutton" src="../static/images/filtertwee.png" alt="Filter button"></a>
+    <img id="logo" src="../static/images/logo.png" alt="logo luvely">
+    <a href="/profile"><img id="profilebutton"  src="../static/images/profile.png" alt="profile luvely"></a>
+  </header>
+
+
+  <main class="normalmain">
+
+    <div class="maininhoud">
+    <section class="titleoptions">
+      <h1> Results: </h1>
+      <section>
+        <a href="/results"><img id="visitedbutton" src="../static/images/visited.png" alt="visitedbutton"></a>
+        <a href="/likes"><img id="likedbutton" src="../static/images/hartjeuitlijn.png" alt="liked pagina"></a>
+      </section>
+    </section>
+    <article class="allpeople">
+      <% for (var index = 0; index < data.length; index++) { %>
+        <article class="person">
+          <section>
+            <img id="personimage" src="../static/images/<%= data[index].image%> " alt="Profile picture of <%= data[index].Firstname%>">
+          </section>
+          <section class="info">
+          <h2> <%= data[index].firstName %> </h2>
+            <section>
+            <p> <%= data[index].sexuality %></p>
+            <p> <%= data[index].age %> years old</p>
+            <p> <%= data[index].hair %> hair </p>
+            </section>
+          </section>
+        </article>
+      <% } %>
+    </article>
+</main> 
+</body>

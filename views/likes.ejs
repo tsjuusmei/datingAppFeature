@@ -1,0 +1,51 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <%- include('./components/head') %>
+    <title>Likes</title>
+</head>
+
+<body class="results">
+  <header>
+    <a  href="/filter"><img class="filterbutton" src="../static/images/filtertwee.png" alt="Filter button"></a>
+    <img id="logo" src="../static/images/logo.png" alt="logo luvely">
+    <a href="/profile"><img id="profilebutton"  src="../static/images/profile.png" alt="profile luvely"></a>
+  </header>
+
+
+  <main class="normalmain">
+
+    <div class="maininhoud">
+    <section class="titleoptions">
+      <h1> Results: </h1>
+      <section>
+        <a href="/results"><img id="visitedbutton" src="../static/images/visited.png" alt="visitedbutton"></a>
+        <a href="/likes"><img id="likedbutton" src="../static/images/hartjeuitlijn.png" alt="liked pagina"></a>
+      </section>
+    </section>
+
+    <article class="allpeople">
+      <% for (let i = 0; i < likes.length; i++) { %>
+        <article class="person">
+          <section class="test">
+            <img id="personimage" src="../static/images/<%= likes[i].image%> " alt="Profile picture of <%= likes[i].firstName%>">
+            <img data-id="<%= likes[i]._id %>" class="likedbybutton" src= "<%= likes[i].likedBy.includes(user._id.toString()) ? '../static/images/likedBy.png' : '../static/images/notLikedBy.png' %> "  alt="">
+          </section>
+          <section class="info">
+          <h2> <%= likes[i].firstName %> </h2>
+            <section>
+            <p> <%= likes[i].sexuality %></p>
+            <p> <%= likes[i].age %> years old</p>
+            <p> <%= likes[i].hair %> hair </p>
+            </section>
+          </section>
+        </article>
+      <% } %>
+    </article>
+</main> 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js" integrity="sha256-T/f7Sju1ZfNNfBh7skWn0idlCBcI3RwdLSS4/I7NQKQ=" crossorigin="anonymous"></script>
+<script src="../static/js/script.js"></script>
+
+</body>

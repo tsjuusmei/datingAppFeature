@@ -1,0 +1,79 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <%- include('./components/head') %>
+    <title>Register</title>
+</head>
+
+<body class="register">
+
+    <header>
+
+        <img class="logo" src="../static/images/logo.png" alt="logo luvely">
+
+    </header>
+
+    <main>
+        <div>
+            <h1 class="title">Register</h1>
+            <p class="sidetitle"><a href="/login">Login</a></p>
+        </div>
+
+        <form method="POST" action="/register" enctype="multipart/form-data">
+
+            <label for="firstname">First name:</label>
+            <input type="text" name="firstname" id="firstname" required>
+
+            <label for="lastname">Last name: </label>
+            <input type="text" name="lastname" id="lastname" required>
+
+            <label for="email">E-mail:</label>
+            <input type="email" name="email" id="email" required>
+
+            <label for="password">Wachtwoord: </label>
+            <input type="password" name="password" id="password" required>
+
+            <label for="age">Age: </label>
+            <input class="age" type="text" name="age" id="age" required>
+
+            <label for="hair">Hair color: </label>
+            <input class="hair" type="text" name="hair" id="hair" required>
+
+            <p class="labeltitle">Gender:</p>
+
+            <div>
+                <input class='radio' type="radio" id="men" name="gender" value="men">
+                <label for="men" class="label">Men</label>
+
+                <input class='radio' type="radio" id="women" name="gender" value="women">
+                <label for="women" class="label">Women</label>
+            </div>
+
+            <p class="labeltitle">Sexuality:</p>
+
+            <div>
+                <input class='radio' type="radio" id="straight" name="sexuality" value="Straight">
+                <label for="straight" class="label">Straight</label>
+
+                <input class='radio' type="radio" id="gay" name="sexuality" value="Gay">
+                <label for="gay" class="label">Gay</label>
+
+                <input class='radio' type="radio" id="Bi-sexual" name="sexuality" value="Bi-sexual">
+                <label for="Bi-sexual" class="label">Bi-sexual</label>
+            </div>
+
+                <label for="file">Profile picture
+                    <input type="file" name="myImage" accept="image/*" class="custom-file-input">
+                </label>
+
+            <img src="../static/images/footer.knop.png" alt="Footer knop">
+            <input class='registerbutton' type="submit" value="register">
+        </form>
+
+        <img class="pijltjerechts" src="../static/images/pijltjerechts.png" alt="">
+    </main>
+</body>
+
+</html>
