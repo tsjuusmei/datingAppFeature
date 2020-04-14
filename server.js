@@ -1,4 +1,5 @@
-const helmet = require('helmet')
+
+const helmet = require('helmet');
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongo = require("mongodb");
@@ -6,10 +7,31 @@ const ObjectID = mongo.ObjectID;
 const session = require("express-session");
 const bcrypt = require('bcrypt')
 const rateLimit = require('express-rate-limit')
+const multer = require('multer')
+const fs = require('fs')
+const path = require('path')
 
 require("dotenv").config();
 
 const app = express();
+
+//Set sotage engine
+const storage = multer.diskStorage({
+  destination: './static/images/',
+  filename: function(req, file, cb){
+    cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
+  }
+})
+
+const upload = multer({
+  storage: storage
+})
+
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 300, // limit each IP to 300 requests per windowMs
+  message: 'Too many requests sent from this IP, please try again after 15 minutes'
+});
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
@@ -68,7 +90,7 @@ app.get("/likes", likes)
 app.post("/results", filter);
 app.post("/login", loginpost);
 app.post("/like", likepost);
-app.post('/register', registerpost)
+app.post('/register', upload.single('myImage'), registerpost)
 app.post("/profile", profilepost)
 app.post('/logout', logoutpost)
 
@@ -200,7 +222,7 @@ function filter(req, res) {
 async function registerpost(req, res, next) {
 
   const hashedPassword = await bcrypt.hash(req.body.password, 10)
-
+  
   db.collection('users').insertOne({
     firstName: req.body.firstname,
     lastName: req.body.lastname,
@@ -212,7 +234,8 @@ async function registerpost(req, res, next) {
     sexuality: req.body.sexuality,
     filter: { gender: "", sexuality: "" },
     visitedBy: [""],
-    likedBy: [""]
+    likedBy: [""],
+    image: req.file ? req.file.filename : null
   }, done)
 
   function done(err, data) {
