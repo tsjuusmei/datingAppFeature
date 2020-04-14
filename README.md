@@ -58,7 +58,7 @@ visitedBy: Array
 
 It should look like this in MongoDB Compass
 
-![Database](https://github.com/tsjuusmei/datingAppFeature/blob/master/documentatie/images/database.png)
+![Database](https://github.com/tsjuusmei/datingAppFeature/blob/develop/documentatie/images/database.png?raw=true)
 
 The available `filters` for `gender` are `"Men"` and `"Women"`. 
 
