@@ -21,7 +21,7 @@
             <p class="sidetitle"><a href="/login">Login</a></p>
         </div>
 
-        <form method="POST" action="/register">
+        <form method="POST" action="/register" enctype="multipart/form-data">
 
             <label for="firstname">First name:</label>
             <input type="text" name="firstname" id="firstname" required>
@@ -44,36 +44,32 @@
             <p class="labeltitle">Gender:</p>
 
             <div>
-                <input class='radio' type="radio" id="man" name="gender" value="man">
-                <label for="man" class="label">Man</label>
+                <input class='radio' type="radio" id="men" name="gender" value="men">
+                <label for="men" class="label">Men</label>
 
-                <input class='radio' type="radio" id="woman" name="gender" value="woman">
-                <label for="woman" class="label">Woman</label>
-
-                <input class='radio' type="radio" id="other" name="gender" value="other">
-                <label for="other" class="label">Other</label>
+                <input class='radio' type="radio" id="women" name="gender" value="women">
+                <label for="women" class="label">Women</label>
             </div>
 
             <p class="labeltitle">Sexuality:</p>
 
             <div>
-                <input class='radio' type="radio" id="straight" name="sexuality" value="straight">
+                <input class='radio' type="radio" id="straight" name="sexuality" value="Straight">
                 <label for="straight" class="label">Straight</label>
 
-                <input class='radio' type="radio" id="gay" name="sexuality" value="gay">
+                <input class='radio' type="radio" id="gay" name="sexuality" value="Gay">
                 <label for="gay" class="label">Gay</label>
 
-                <input class='radio' type="radio" id="bi" name="sexuality" value="bi">
-                <label for="bi" class="label">Bisexual</label>
+                <input class='radio' type="radio" id="Bi-sexual" name="sexuality" value="Bi-sexual">
+                <label for="Bi-sexual" class="label">Bi-sexual</label>
             </div>
-            <img src="../static/images/footer.knop.png" alt="Footer knop">
-            <input class='registerbutton' type="submit" value="register">
-        </form>
-        <form action="/uploadImage" enctype="multipart/form-data" method="POST">
+
             <label for="file">
                 <input type="file" name="myImage" accept="image/*">
             </label>
-            <input type="submit" value="upload photo">
+
+            <img src="../static/images/footer.knop.png" alt="Footer knop">
+            <input class='registerbutton' type="submit" value="register">
         </form>
 
         <img class="pijltjerechts" src="../static/images/pijltjerechts.png" alt="">
