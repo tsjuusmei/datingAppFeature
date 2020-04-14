@@ -11,13 +11,11 @@ require("dotenv").config();
 
 const app = express();
 
-// Use rate-limiter to protect against brute-force attacks
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 21, // limit each IP to 21 requests per windowMs
-  message: 'Too many requests sent from this IP, please try again after 15 minutes'
+  max: 5, // limit each IP to 5 requests per windowMs
+  message: 'Too many images uploaded from this IP, please try again after 15 minutes'
 });
-app.use(limiter)
 
 const port = 3000;
 
@@ -25,7 +23,7 @@ const TWO_HOURS = 1000 * 60 * 60 * 2;
 
 // THIS IS THE CODE FOR THE CONNECTION WITH THE DATABASE
 let db = null;
-let url = 'mongodb+srv://asd123:asd123@datingappcluster-mmsmc.mongodb.net/test?retryWrites=true&w=majority';
+let url = process.env.DB_URL;
 
 mongo.MongoClient.connect(url, { useUnifiedTopology: true }, function (
   err,
@@ -65,9 +63,10 @@ app.get('/register', register);
 app.get("/filter", filters);
 app.get("/login", login);
 app.get("/profile", profile);
+app.get("/likes", likes)
 
 app.post("/results", filter);
-app.post("/login", loginpost, limiter);
+app.post("/login", loginpost);
 app.post("/like", likepost);
 app.post('/register', registerpost)
 app.post("/profile", profilepost)
@@ -113,16 +112,28 @@ function login(req, res) {
   res.render("login.ejs");
 }
 
+
 function profile(req, res) {
-  // In this function we use the data from the current userId aka the session 
-  res.render('profile.ejs', { data: req.session.userId })
+  // In this function we use the data from the current user aka the session 
+  res.render('profile.ejs', { data: req.session.user })
 }
 
-async function loginpost(req, res,) {
+async function likes(req, res) {
+  const user = req.session.user;
+  const promises = []; // create an array to store promises
+  user.likedBy.forEach((likerId) => {
+    // make a foreach for each like in likedBy array in db
+    promises.push(
+      db.collection("users").findOne({ _id: new ObjectID(likerId) })
+    ); // For each like in the likedBy array, get the corresponding user from the database and push it as a promise to the promises[]
+  });
+  const likes = await Promise.all(promises);
+  res.render('likes', { likes: likes, user })
+}
+
+async function loginpost(req, res) {
 
   const user = await db.collection('users').findOne({ email: req.body.email })
-
-  await limiter
 
   if (user == null) {
     return res.status(400).send('Cannot find user')
@@ -140,13 +151,25 @@ async function loginpost(req, res,) {
 }
 
 // In this function we make sure the user can update it's haircolor and this wil be changed in the database
-function profilepost(req, res) {
+
+async function profilepost(req, res) {
+  const hashedPassword = await bcrypt.hash(req.body.password, 10)
+
   db.collection('users').updateOne(
     // First we find the userId aka the session and then we update the haircolor with the input from the user
-    { firstName: req.session.userId.firstName },
-    { $set: { hair: req.body.hair } })
+    { firstName: req.session.user.firstName },
+    {
+      $set: {
+        email: req.body.email,
+        password: hashedPassword,
+        age: req.body.age,
+        hair: req.body.hair,
+        gender: req.body.gender,
+        sexuality: req.body.sexuality
+      }
+    })
 
-  db.collection('users').findOne({ firstName: req.session.userId.firstName }, done)
+  db.collection('users').findOne({ firstName: req.session.user.firstName }, done)
   function done(err, data) {
     if (err) {
       next(err)
@@ -177,7 +200,7 @@ function filter(req, res) {
 async function registerpost(req, res, next) {
 
   const hashedPassword = await bcrypt.hash(req.body.password, 10)
-  
+
   db.collection('users').insertOne({
     firstName: req.body.firstname,
     lastName: req.body.lastname,
