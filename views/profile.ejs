@@ -1,11 +1,11 @@
 <!doctype html>
 
-<link rel="stylesheet" href="/static/style.css">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<%- include('./components/head') %>
+<title>Profile</title>
 
 <body>
   <header>
-    <!-- <button id="backbutton" href="" ></button> -->
+    <a  href="/results"><img class="filterbutton" id="backbutton" src="../static/images/pijltjelinks.png" alt="Back button"></a>
     <img id="logo" src="../static/images/logo.png" alt="logo luvely">
     
   </header>
@@ -18,7 +18,7 @@
             </form>
         </section>
       <section id="profile">
-        <img id="profileimg" src="../static/images/<%= data.image%> " alt="Profile picture of <%= data.Firstname%>">
+        <img id="profileimg" src="../static/images/<%=data.image%> " alt="Profile picture of <%= data.Firstname%>">
         <section class="profileinfo">
             <h2> <%= data.firstName %> </h2>
             <h3><%= data.lastName %></h3>
@@ -35,14 +35,41 @@
       <form method="POST" action="/profile">
         <fieldset class="profilefieldset">
             <legend class="profilelegend">Change your info:</legend>
+
+            <label class="profilelabel" for="email">E-mail</label>
+            <input class="profileinput" type="email" name="email" id="email" placeholder=" <%= data.email %> ">
+
+            <label class="profilelabel" for="password">Password</label>
+            <input class="profileinput" type="password" name="password" id="password" placeholder=" ....... ">
+
+            <label class="profilelabel" for="age">Age</label>
+            <input class="profileinput" type="text" name="age" id="age" placeholder="<%= data.age %> years old">
+
             <label class="profilelabel" for="hair">Hair color</label>
             <input class="profileinput" type="text" name="hair" id="hair" placeholder=" <%= data.hair %> ">
-            
+
         </fieldset>
+        <fieldset class="profilefieldset">
+          <legend class="profilelabel" >Gender</legend>
+          <input id="men" class="radio" type="radio" name="gender" value="men">
+          <label for="men" class="label">Men</label>
+          <input id="women" class="radio" type="radio" name="gender" value="woman">
+          <label for="women" class="label">Women</label>
+        </fieldset>
+        <fieldset class="profilefieldset">
+          <legend class="profilelabel" >Sexuality</legend>
+          <input id="straight" class="radio" type="radio" name="sexuality" value="Straight">
+          <label for="straight" class="label">Straight</label>
+          <input id="gay" class="radio" type="radio" name="sexuality" value="Gay">
+          <label for="gay" class="label">Gay</label>
+          <input id="bi" class="radio" type="radio" name="sexuality" value="Bi-sexual">
+          <label for="bi" class="label">Bi-sexual</label>
+        </fieldset>
+        <input class="buttonrandom" type="submit" value="Change!">
     </article>
-        <div class="submitButtonLogin">
-            <input class="next" type="submit" value="Change">
-        </div>
+        
+      
+      
       </form>
 
       

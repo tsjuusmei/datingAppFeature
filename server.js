@@ -1,3 +1,4 @@
+
 const helmet = require('helmet');
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -32,7 +33,13 @@ const limiter = rateLimit({
   message: 'Too many requests sent from this IP, please try again after 15 minutes'
 });
 
-const port = 3000;
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 300, // limit each IP to 20 requests per windowMs
+  message: 'Too many requests sent from this IP, please try again after 15 minutes'
+});
+
+const port = process.env.PORT || 3000
 
 const TWO_HOURS = 1000 * 60 * 60 * 2;
 
@@ -53,10 +60,10 @@ mongo.MongoClient.connect(url, { useUnifiedTopology: true }, function (
 // THIS IS WHERE THE CODE FOR THE DATABASE ENDS
 
 app.use(helmet())
+app.use(limiter);
 app.use("/static", express.static("static"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(limiter);
 app.use(
   session({
     name: process.env.SESSION_NAME,
