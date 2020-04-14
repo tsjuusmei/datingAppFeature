@@ -17,7 +17,7 @@ const limiter = rateLimit({
   message: 'Too many requests sent from this IP, please try again after 15 minutes'
 });
 
-const port = 3000;
+const port = process.env.PORT || 3000
 
 const TWO_HOURS = 1000 * 60 * 60 * 2;
 
