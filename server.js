@@ -7,7 +7,6 @@ const session = require("express-session");
 const bcrypt = require("bcrypt");
 const rateLimit = require("express-rate-limit");
 const multer = require("multer");
-const fs = require("fs");
 const path = require("path");
 
 require("dotenv").config();
