@@ -73,6 +73,9 @@ npm run dev
 ```
 To test if you've correctly connected to the database you can go to the [register](http://localhost:3000/register) page by typing http://localhost:3000/register in your browser. Once on this page, you can fill in the form and send it. If it shows in the database, you've correctly connected. You can use [Compass](https://www.mongodb.com/download-center/compass) for easy visual acces to your database.
 
+## Demo
+You'll be able to find a live demo here: https://luvely-datingapp.herokuapp.com/
+
 ## Packages used
 * [Express](https://www.npmjs.com/package/express) - Used to setup the server
 * [MongoDB](https://www.npmjs.com/package/mongodb) - Used to setup the database
