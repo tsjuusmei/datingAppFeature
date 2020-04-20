@@ -115,7 +115,7 @@ function results(req, res, next) {
     if (err) {
       next(err);
     } else {
-      res.render("visitors.ejs", { data: data });
+       res.render("visitors.ejs", { data: data });
     }
   }
 }
